@@ -1,0 +1,13 @@
+{
+  "manifest_version": 2,
+
+  "name": "Turtles-Team-9001",
+  "description": "Display a Momentum-like new tab page.",
+  "version": "1.0",
+
+  "incognito": "split",
+
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  }
+}
