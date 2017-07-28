@@ -1,0 +1,30 @@
+* {
+}
+.todoBox {
+  width: 150px;
+  height: 242.7px;
+}
+
+.todoHeader{
+  color: red;
+  height: 15%;
+  background: DarkGray
+}
+
+.todoBody{
+  color: green;
+  height: 70%;
+  background: SlateGray
+}
+
+.todoInput{
+  background: DarkGray;
+}
+
+input{
+  background: transparent;
+  color: SlateGray;
+  border: none;
+  width: inherit;
+  height:15%;
+}
