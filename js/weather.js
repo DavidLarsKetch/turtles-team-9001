@@ -69,7 +69,7 @@ function catsAndDogs(city) {
       console.log(response);
       lastKnownCityId = response.data.sys.id;
       cookieJar.set({'lastKnownCityId': lastKnownCityId});
-      document.getElementById('tempC').innerHTML = Math.round(response.data.main.temp - 273.15);
+      document.getElementById('tempC').innerHTML = Math.round(response.data.main.temp - 273.15) + "&deg;C";
       document.getElementById('tempCity').innerHTML = response.data.name;
       var iconId = response.data.weather[0].icon;
       var classString = "icon icon" + iconId;
