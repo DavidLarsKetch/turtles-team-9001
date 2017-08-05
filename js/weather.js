@@ -1,26 +1,7 @@
 // Variables
 var lat, lon, lastKnownCityId;
 var cookieJar = chrome.storage.local;
-// var tempIcons = {
-//   '01d': '',
-//   '02d': '',
-//   '03d': '',
-//   '04d': '',
-//   '09d': '',
-//   '10d': '',
-//   '11d': '',
-//   '13d': '',
-//   '50d': '',
-//   '01n': '',
-//   '02n': '',
-//   '03n': '',
-//   '04n': '',
-//   '09n': '',
-//   '10n': '',
-//   '11n': '',
-//   '13n': '',
-//   '50n': ''
-// };
+
 
 function geoFallback() {
   cookieJar.get('lastKnownCityId', (data) => {
@@ -80,8 +61,25 @@ function catsAndDogs(city) {
       console.log(error);
     });
   } else {
-    console.log('City was passed, this part of the function is not set up yet...');
+    console.log('City was passed, retreiving data.');
+    axios.get('http://api.openweathermap.org/data/2.5/weather', {
+      params: {
+        id: city,
+        APPID: "b38e53f0c663c60a0f289cb29826d117"
+      }
+    })
+    .then((response) => {
+      console.log('Weather data retreived!');
+      console.log(response);
+      document.getElementById('tempC').innerHTML = Math.round(response.data.main.temp - 273.15) + "&deg;C";
+      document.getElementById('tempCity').innerHTML = response.data.name;
+      var iconId = response.data.weather[0].icon;
+      var classString = "icon icon" + iconId;
+      document.getElementById('tempIcon').className = classString;
+    })
+    .catch((error) => {
+      console.log('There was an error retreiving weather data:')
+      console.log(error);
+    });
   };
 };
-
-// document.getElementById('button').addEventListener("click", isItRaining);
