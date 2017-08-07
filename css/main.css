@@ -98,6 +98,7 @@ h4.greeting {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-end;
+  text-align: right;
   grid-column: 8 / 9;
   grid-row: 1 / 2;
   margin-top: 1rem;
@@ -190,6 +191,7 @@ h2.temp {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
+  text-align: right;
   grid-column: 8 / 9;
   grid-row: 8 / 9;
   margin-right: 1rem;
