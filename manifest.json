@@ -12,6 +12,7 @@
   },
 
   "permissions": [
-    "geolocation"
+    "geolocation",
+    "storage"
   ]
 }
