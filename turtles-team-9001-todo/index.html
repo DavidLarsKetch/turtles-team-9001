@@ -1,20 +1,24 @@
 <html>
   <head>
     <link rel="stylesheet" href="./css/style.css">
-    <script>
-    </script>
+    <script src=js/todo.js></script>
   </head>
   <body>
-    <div class="todoBox">
-      <div class="todoHeader">
+    <div id="todoBox">
+      <div id="todoHeader">
         <span>Todo</span>
       </div>
-      <div class="todoBody">
-        <span></span>
+      <div id="todoBody">
+        <ul id="todoList">
+
+        </ul>
       </div>
-      <div class="todoInput">
-        <input type="text" name="newTodo" placeholder="+">
-      </div>
+      <form id="todoInputForm">
+        <span>
+          <input id="todoInputField" type="text" name="newTodoInputField" placeholder="New Todo">
+          <input id="todoInputButton" type="button" name="todoInputButton">
+        </span>
+      </form>
     </div>
   </body>
 </html>

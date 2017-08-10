@@ -1,30 +1,37 @@
 * {
+  margin:0;
 }
-.todoBox {
+
+#todoBox {
   width: 150px;
   height: 242.7px;
 }
 
-.todoHeader{
-  color: red;
+#todoHeader {
+  color: white;
   height: 15%;
   background: DarkGray
 }
 
-.todoBody{
-  color: green;
+#todoBody {
+  color: white;
   height: 70%;
   background: SlateGray
 }
 
-.todoInput{
+#todoList {
+  list-style-type: none;
+  padding: 0;
+}
+
+#todoInputForm {
   background: DarkGray;
 }
 
-input{
+#todoInputField {
   background: transparent;
   color: SlateGray;
   border: none;
-  width: inherit;
+  width: 75%;
   height:15%;
 }
