@@ -2,6 +2,10 @@
   margin:0;
 }
 
+.todoItemDone {
+  text-decoration-line: line-through;
+}
+
 #todoBox {
   width: 150px;
   height: 242.7px;
@@ -15,8 +19,8 @@
 
 #todoBody {
   color: white;
-  height: 70%;
-  background: SlateGray
+  min-height: 70%;
+  background: SlateGray;
 }
 
 #todoList {
