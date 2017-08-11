@@ -1,0 +1,41 @@
+* {
+  margin:0;
+}
+
+.todoItemDone {
+  text-decoration-line: line-through;
+}
+
+#todoBox {
+  width: 150px;
+  height: 242.7px;
+}
+
+#todoHeader {
+  color: white;
+  height: 15%;
+  background: DarkGray
+}
+
+#todoBody {
+  color: white;
+  min-height: 70%;
+  background: SlateGray;
+}
+
+#todoList {
+  list-style-type: none;
+  padding: 0;
+}
+
+#todoInputForm {
+  background: DarkGray;
+}
+
+#todoInputField {
+  background: transparent;
+  color: SlateGray;
+  border: none;
+  width: 75%;
+  height:15%;
+}
