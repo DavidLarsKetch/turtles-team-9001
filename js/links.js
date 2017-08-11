@@ -1,6 +1,11 @@
-function removeNode() {
-    var link = document.getElementById("links");
+function createLinks() {
+    var currentDiv = document.getElementById("links");
+    var newList = document.createElement("ul");
+    var listItem = document.createElement("li");
 
-    link.remove();
+    listItem.textContent = "Adrian";
+    currentDiv.childNodes[0].remove();
+    newList.appendChild(listItem);
+    currentDiv.appendChild(newList);
 }
 
