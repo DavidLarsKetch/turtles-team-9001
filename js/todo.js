@@ -35,9 +35,14 @@ function todoLineThrough() {
 function todoEraseDoneItems() {
   console.log("The todoEraseDoneItems function will work!");
 }
+//Need function to store todo items.
+
+
+//Need function to retrieve & display stored todo items.
 
 
 window.onload = function(){
+  //.addEventListener should use "submit" instead of "click" and the element targeted should change accordingly. However, neither "todoInputField" nor "todoInputForm" worked with "submit" when initially writing this.
   document.getElementById("todoInputButton").addEventListener("click", todoAddNew);
   todoEraseDoneItems();
 }
