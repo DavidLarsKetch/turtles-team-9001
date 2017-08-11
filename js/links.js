@@ -9,3 +9,7 @@ function createLinks() {
     currentDiv.appendChild(newList);
 }
 
+(function press() {
+    var currentDiv = document.getElementById("links");
+    currentDiv.onclick = createLinks();
+})();
