@@ -9,7 +9,7 @@ function todoAddNew() {
     todoCheckbox.setAttribute("name", "todoItemCheckbox");
     todoCheckbox.setAttribute("id", "todoItemCheckbox");
     todoCheckbox.setAttribute("style", "display:inline");
-    todoCheckbox.addEventListener("click", todoLineThrough);
+    todoCheckbox.addEventListener("click", todoCheckoff);
 
     var todoTextWrap = document.createElement("p");
     todoTextWrap.setAttribute("id", "todoItemName");
@@ -21,28 +21,52 @@ function todoAddNew() {
     todoItemWrap.appendChild(todoCheckbox);
     todoItemWrap.appendChild(todoTextWrap);
 
-    var todoListContainer = document.getElementById("todoList");
-    todoListContainer.appendChild(todoItemWrap);
+    var todoList = document.getElementById("todoList");
+    todoList.appendChild(todoItemWrap);
+
+    todoStore();
+    todoCount();
   }
 }
 
-function todoLineThrough() {
+//This function should give the stored item a timestamp to be used for erasing items at a certain interval.
+function todoCheckoff() {
   var x = this.nextElementSibling;
   x.classList.toggle("todoItemDone");
+  todoCount();
 }
 
-//Need function to erase crossed out todos after certain interval.
+//Function to erase crossed out todos after certain interval.
+//All crossed off items should be erased at the same time, e.g., at 00:00.
+//Upon loading extension, before stored todo items are displayed, this function runs, erasing any checked off todo items that have lapsed the time interval.
 function todoEraseDoneItems() {
-  console.log("The todoEraseDoneItems function will work!");
+  var x = "This is the output of the todoEraseDoneItems function."
+  console.log(x);
 }
-//Need function to store todo items.
 
+//Function to retrieve & display stored todo items.
+function todoRetrieve() {
+  var x = "This is the output of the todoRetrieve function."
+  console.log(x)
+}
 
-//Need function to retrieve & display stored todo items.
+//Function to count number of todo items left, not counting those checked off.
+function todoCount() {
+  var x = "This is the output of the todoCount function."
+  console.log(x)
+}
 
+//Function to store todo items, potentially using window.localStorage.
+function todoStore() {
+  var x = "This is the output of the todoStore function."
+  console.log(x)
+}
 
 window.onload = function(){
-  //.addEventListener should use "submit" instead of "click" and the element targeted should change accordingly. However, neither "todoInputField" nor "todoInputForm" worked with "submit" when initially writing this.
-  document.getElementById("todoInputButton").addEventListener("click", todoAddNew);
   todoEraseDoneItems();
+  todoRetrieve();
+  todoCount();
+  //.addEventListener should use "submit" instead of "click" and the element targeted should change accordingly.
+  //However, neither "todoInputField" nor "todoInputForm" worked with "submit" when initially writing this.
+  document.getElementById("todoInputButton").addEventListener("click", todoAddNew);
 }
