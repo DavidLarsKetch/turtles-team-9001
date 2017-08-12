@@ -192,7 +192,6 @@ h2.temp {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
-  text-align: right;
   grid-column: 8 / 9;
   grid-row: 8 / 9;
   margin-right: 1rem;
@@ -204,14 +203,14 @@ h2.temp {
 }
 
 #todoBox {
-  width: 150px;
-  height: 242.7px;
+  width: 242.7px;
+  height: 150px;
 }
 
 #todoHeader {
   color: white;
   height: 15%;
-  background: DarkGray
+  background: DarkGray;
 }
 
 #todoBody {
@@ -233,6 +232,6 @@ h2.temp {
   background: transparent;
   color: SlateGray;
   border: none;
-  width: 75%;
+  width: 85%; /* Should be 100% once button can be deleted. */
   height:15%;
 }
