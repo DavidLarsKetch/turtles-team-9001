@@ -1,9 +1,3 @@
-function deleteLinks() {
-    var currentDiv = document.getElementById("links");
-    
-    currentDiv.childNodes[1].remove();
-}
-
 function createLinks() {
     var newList = document.createElement("ul");
     var listItem = document.createElement("li");
@@ -16,6 +10,5 @@ function createLinks() {
 
 var currentDiv = document.getElementById("links");
 currentDiv.onclick = function() {
-    deleteLinks();
     createLinks();
 }
