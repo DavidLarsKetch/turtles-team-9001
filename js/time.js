@@ -18,6 +18,4 @@ function setTime() {
     theTimeIs.innerHTML = hr + ':'+ min + ':' + sec;
 }
 
-setTime();
-
 var updatedTime = setInterval(setTime, 500);
