@@ -224,6 +224,17 @@ h2.temp {
   padding: 0;
 }
 
+/*#todoList * {
+	display: inline;
+}*/
+#todoItemCheckbox {
+	display: inline;
+}
+
+#todoItemName {
+	display: inline;
+}
+
 #todoInputForm {
   background: rgba(169,169,169,.8);
 }

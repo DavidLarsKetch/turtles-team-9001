@@ -16,12 +16,10 @@ function todoAddNew() {
     todoCheckbox.setAttribute("type", "checkbox");
     todoCheckbox.setAttribute("name", "todoItemCheckbox");
     todoCheckbox.setAttribute("id", "todoItemCheckbox");
-    todoCheckbox.setAttribute("style", "display:inline");
     todoCheckbox.addEventListener("click", todoCheckoff);
 
     var todoTextWrap = document.createElement("p");
     todoTextWrap.setAttribute("id", "todoItemName");
-    todoTextWrap.setAttribute("style", "display:inline");
 
     var todoTextNode = document.createTextNode(todoRawInput);
 
