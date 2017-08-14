@@ -18,13 +18,14 @@ Chingu-Voyage Turtles Team 9001 repo for Chrome extension project.
 
 #### Todo List
 
-- [ ] Todo items are saved!
+- [ ] Todo items are stored & retrieved!
 - [ ] General styling
 - [ ] Auto-erase todo items after certain interval (e.g., at midnight)
-- [ ] 'Enter' instead of button adds new item
+- [x] 'Enter' instead of button adds new item
 - [ ] Todo items counter
-- [ ] Draggable items?
+- [ ] Draggable todo items?
 - [ ] URL doesn't change with new entry (eliminated once an extension & not HTML?)
+- [ ] todoInputField is reset after new item is entered
 
 #### Time 
 
