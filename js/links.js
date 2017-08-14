@@ -4,6 +4,7 @@ function createLinks() {
 
     for (let i = 0; i < 3; i++) {
         var listItem = document.createElement("li");
+        listItem.classList.add('ourListItemNames');
         listItem.textContent = ourNames[i];
         currentDiv[0].appendChild(listItem);
     }
@@ -11,5 +12,14 @@ function createLinks() {
 
 var currentDiv = document.getElementById("links");
 currentDiv.onclick = function() {
-    createLinks();
+    var thisName = document.getElementsByClassName('ourListItemNames');
+    
+    if (thisName.length == 0) {
+        createLinks();
+    }
+    else {
+        for (let i = 0; i < 3; i++) {
+            thisName[0].remove();
+        }
+    }
 }
