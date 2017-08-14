@@ -10,7 +10,6 @@ function todoSubmitListen() {
 
 function todoAddNew() {
   var todoRawInput = document.getElementById("todoInputField").value;
-//Need to check whether input field is blank before creating new todo item.
   if (todoRawInput) {
     var todoItemWrap = document.createElement("li");
 
