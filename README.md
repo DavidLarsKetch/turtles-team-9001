@@ -15,3 +15,28 @@ Chingu-Voyage Turtles Team 9001 repo for Chrome extension project.
 - [x] Geolocation error handling—if it doesn't work, use ~~IP address~~ last known city
 - [x] Icons
 - [ ] ºC vs ºF ??
+
+#### Todo List
+
+- [ ] Todo items are saved!
+- [ ] General styling
+- [ ] Auto-erase todo items after certain interval (e.g., at midnight)
+- [ ] 'Enter' instead of button adds new item
+- [ ] Todo items counter
+- [ ] Draggable items?
+- [ ] URL doesn't change with new entry (eliminated once an extension & not HTML?)
+
+#### Time 
+
+- [x] Update time every second
+
+#### Quote
+- [x] Get quote to clone extension
+- [x] Get random quote to clone extension when page refreshes/new tab
+
+#### Links
+
+- [ ] Remove links link
+- [ ] Replace with a checklist with our names
+- [ ] Add links to our github/twitter/linkedin
+- [ ] Make it pretty 

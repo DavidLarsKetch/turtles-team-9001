@@ -2,7 +2,7 @@
   <head>
     <title>Turtle Tab 9001</title>
     <!-- Add individual stylesheets here for each module. -->
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="./css/main.css">
 
   </head>
   <body>
@@ -10,7 +10,7 @@
 
       <!-- "Always control the center of the board." -->
       <div id="main">
-        <h1 class="time">12:34</h1>
+        <h1 class="time"></h1>
         <h4 class="greeting">Hello World</h4>
       </div>
 
@@ -38,12 +38,27 @@
 
       <!-- Quote -->
       <div id="quote">
-        
+
       </div>
 
       <!-- Todo -->
       <div id="todo">
-        <p>Todo</p>
+        <div id="todoBox">
+          <div id="todoHeader">
+            <span>Todo</span>
+          </div>
+          <div id="todoBody">
+            <ul id="todoList">
+
+            </ul>
+          </div>
+          <form id="todoInputForm">
+            <span>
+              <input id="todoInputField" type="text" name="newTodoInputField" placeholder="New Todo">
+              <input id="todoInputButton" type="button" name="todoInputButton">
+            </span>
+          </form>
+        </div>
       </div>
 
     </div>
@@ -52,9 +67,11 @@
     <script src="js/vendor/axios.min.js"></script>
 
     <!-- Our scripts -->
+    <script src="js/time.js"></script>
     <script src="js/quote.js"></script>
     <script src="js/weather.js"></script>
     <script src="js/links.js"></script>
+    <script src="js/todo.js"></script>
 
   </body>
 </html>
