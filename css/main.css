@@ -210,13 +210,13 @@ h2.temp {
 #todoHeader {
   color: white;
   height: 15%;
-  background: DarkGray;
+  background: rgba(169,169,169,.8);
 }
 
 #todoBody {
   color: white;
   min-height: 70%;
-  background: SlateGray;
+  background: rgba(112,128,144,.7);
 }
 
 #todoList {
@@ -225,13 +225,12 @@ h2.temp {
 }
 
 #todoInputForm {
-  background: DarkGray;
+  background: rgba(169,169,169,.8);
 }
 
 #todoInputField {
   background: transparent;
-  color: SlateGray;
+  color: rgba(112,128,144,.7);
   border: none;
-  width: 85%; /* Should be 100% once button can be deleted. */
   height:15%;
 }
