@@ -1,11 +1,12 @@
 function createLinks() {
-    var newList = document.createElement("ul");
-    var listItem = document.createElement("li");
-    var currentDiv = document.getElementById("links");
+    var currentDiv = document.getElementsByClassName("ourLinks");
+    const ourNames = ['Adrian', 'David', 'Jacob'];
 
-    listItem.textContent = "Adrian";
-    newList.appendChild(listItem);
-    currentDiv.appendChild(newList);
+    for (let i = 0; i < 3; i++) {
+        var listItem = document.createElement("li");
+        listItem.textContent = ourNames[i];
+        currentDiv[0].appendChild(listItem);
+    }
 }
 
 var currentDiv = document.getElementById("links");
