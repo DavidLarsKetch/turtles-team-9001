@@ -24,7 +24,7 @@ Chingu-Voyage Turtles Team 9001 repo for Chrome extension project.
 - [x] 'Enter' instead of button adds new item
 - [ ] Todo items counter
 - [ ] Draggable todo items?
-- [x] URL doesn't change with new entry (~~eliminated once an extension & not HTML?~~eliminated with `preventDefault`)
+- [x] URL doesn't change with new entry (~~eliminated once an extension & not HTML?~~ eliminated with `preventDefault`)
 - [x] `#todoInputField` is reset after new item is entered
 
 #### Time 
