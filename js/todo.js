@@ -1,9 +1,11 @@
-function todoUserEnterListen() {
-  document.getElementById("todoInputForm").addEventListener("submit", function(event) {
+function todoSubmitListen() {
+  var todoForm = document.getElementById("todoInputForm");
+  todoForm.addEventListener("submit", function(event) {
     todoAddNew();
+    todoForm.reset();
     event.preventDefault();
     this.value = "";
-  })
+  });
 }
 
 function todoAddNew() {
@@ -72,5 +74,5 @@ window.onload = function(){
   todoEraseDoneItems();
   todoRetrieve();
   todoCount();
-  todoUserEnterListen();
+  todoSubmitListen();
 }
