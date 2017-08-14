@@ -1,3 +1,11 @@
+function todoUserEnterListen() {
+  document.getElementById("todoInputForm").addEventListener("submit", function(event) {
+    todoAddNew();
+    event.preventDefault();
+    this.value = "";
+  })
+}
+
 function todoAddNew() {
   var todoRawInput = document.getElementById("todoInputField").value;
 //Need to check whether input field is blank before creating new todo item.
@@ -66,7 +74,5 @@ window.onload = function(){
   todoEraseDoneItems();
   todoRetrieve();
   todoCount();
-  //.addEventListener should use "submit" instead of "click" and the element targeted should change accordingly.
-  //However, neither "todoInputField" nor "todoInputForm" worked with "submit" when initially writing this.
-  document.getElementById("todoInputButton").addEventListener("click", todoAddNew);
+  todoUserEnterListen();
 }
