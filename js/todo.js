@@ -10,8 +10,9 @@ function todoSubmitListen() {
 
 function todoAddNew() {
   var todoRawInput = document.getElementById("todoInputField").value;
+  var todoTextNode = document.createTextNode(todoRawInput);
+
   if (todoRawInput) {
-    var todoItemWrap = document.createElement("li");
 
     var todoCheckbox = document.createElement("input");
     todoCheckbox.setAttribute("type", "checkbox");
@@ -21,10 +22,9 @@ function todoAddNew() {
 
     var todoTextWrap = document.createElement("p");
     todoTextWrap.setAttribute("id", "todoItemName");
-
-    var todoTextNode = document.createTextNode(todoRawInput);
-
     todoTextWrap.appendChild(todoTextNode);
+
+    var todoItemWrap = document.createElement("li");
     todoItemWrap.appendChild(todoCheckbox);
     todoItemWrap.appendChild(todoTextWrap);
 
