@@ -1,15 +1,16 @@
+var todoRawInput;
+
 function todoSubmitListen() {
   var todoForm = document.getElementById("todoInputForm");
   todoForm.addEventListener("submit", function(event) {
     todoAddNew();
     todoForm.reset();
     event.preventDefault();
-    this.value = "";
   });
 }
 
 function todoAddNew() {
-  var todoRawInput = document.getElementById("todoInputField").value;
+  todoRawInput = document.getElementById("todoInputField").value;
   var todoTextNode = document.createTextNode(todoRawInput);
 
   if (todoRawInput) {
@@ -47,20 +48,20 @@ function todoCheckoff() {
 //All crossed off items should be erased at the same time, e.g., at 00:00.
 //Upon loading extension, before stored todo items are displayed, this function runs, erasing any checked off todo items that have lapsed the time interval.
 function todoEraseDoneItems() {
-  var x = "This is the output of the todoEraseDoneItems function."
-  console.log(x);
+  var x = "";
+  console.log("'" + x + "' = output of todoEraseDoneItems function.");
 }
 
 //Function to retrieve & display stored todo items.
 function todoRetrieve() {
-  var x = "This is the output of the todoRetrieve function."
-  console.log(x)
+  var x = "";
+  console.log("'" + x + "' = output of todoRetrieve function.")
 }
 
 //Function to count number of todo items left, not counting those checked off.
 function todoCount() {
-  var x = "This is the output of the todoCount function."
-  console.log(x)
+  var x = "";
+  console.log("'" + x + "' = output of todoCount function.")
 }
 
 //Function to store todo items, potentially using window.localStorage.
