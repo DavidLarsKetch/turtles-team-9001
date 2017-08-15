@@ -37,7 +37,6 @@ Chingu-Voyage Turtles Team 9001 repo for Chrome extension project.
 
 #### Links
 
-- [ ] Remove links link
-- [ ] Replace with a checklist with our names
+- [ ] Add a list with our names
 - [ ] Add links to our github/twitter/linkedin
 - [ ] Make it pretty 
