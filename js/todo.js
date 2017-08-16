@@ -74,10 +74,11 @@ function todoCount() {
   console.log("'" + x + "' = output of todoCount function.")
 }
 
-//Function to store todo items, potentially using window.localStorage.
+//Function to store todo items.
 function todoStore() {
-  var x = "This is the output of the todoStore function."
-  console.log(x)
+  window.localStorage.setItem(todoRandomId, todoRawInput);
+}
+
 }
 
 window.onload = function(){
