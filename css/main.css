@@ -195,7 +195,7 @@ h2.temp {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
-  grid-column: 8 / 9;
+  grid-column: 7 / 9;
   grid-row: 8 / 9;
   margin-right: 1rem;
   margin-bottom: 1rem;
