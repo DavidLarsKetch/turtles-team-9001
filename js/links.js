@@ -1,25 +1,25 @@
-function createLinks() {
-    var currentDiv = document.getElementsByClassName("ourLinks");
-    const ourNames = ['Adrian', 'David', 'Jacob'];
+function controlLinks() {
+    const theLinksToRemove = document.getElementById('theseLinks');
+    const theList = document.getElementsByClassName('ourLinks');
+    var oldChild;
 
-    for (let i = 0; i < 3; i++) {
-        var listItem = document.createElement("li");
-        listItem.classList.add('ourListItemNames');
-        listItem.textContent = ourNames[i];
-        currentDiv[0].appendChild(listItem);
+    function removeLinksOnLoad() {
+        oldChild = theList[0].removeChild(theLinksToRemove);
     }
-}
 
-var currentDiv = document.getElementById("links");
-currentDiv.onclick = function() {
-    var thisName = document.getElementsByClassName('ourListItemNames');
+    function addRemovedLinks() {
     
-    if (thisName.length == 0) {
-        createLinks();
+        theList[0].appendChild(oldChild);
     }
-    else {
-        for (let i = 0; i < 3; i++) {
-            thisName[0].remove();
-        }
-    }
+
+    return {
+        removeLinksOnLoad: removeLinksOnLoad,
+        addRemovedLinks: addRemovedLinks
+    };
 }
+
+const theLinks = controlLinks();
+const currentDiv = document.getElementById('links');
+
+window.onload = theLinks.removeLinksOnLoad();
+currentDiv.onclick = theLinks.addRemovedLinks;
