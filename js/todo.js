@@ -1,25 +1,25 @@
 var todoRawInput, todoRandomId;
 var todoListKeys = Object.keys(localStorage);
 
-function todoSubmitListen() {
 function todoMakeRandomId() {
   todoRandomId = "t" + Date.now();
 }
 
+function todoListenToSubmit() {
   var todoForm = document.getElementById("todoInputForm");
   todoForm.addEventListener("submit", function(event) {
-    todoAddNew();
+    todoRawInput = document.getElementById("todoInputField").value;
+    todoConstructItem(todoRawInput);
+    todoStore();
     todoForm.reset();
     event.preventDefault();
   });
 }
 
-function todoAddNew() {
-  todoRawInput = document.getElementById("todoInputField").value;
+function todoConstructItem() {
   var todoTextNode = document.createTextNode(todoRawInput);
 
   if (todoRawInput) {
-
     var todoCheckbox = document.createElement("input");
     todoCheckbox.setAttribute("type", "checkbox");
     todoCheckbox.setAttribute("name", "todoItemCheckbox");
@@ -40,7 +40,6 @@ function todoAddNew() {
     var todoList = document.getElementById("todoList");
     todoList.appendChild(todoItemWrap);
 
-    todoStore();
     todoCount();
   }
 }
