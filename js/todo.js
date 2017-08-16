@@ -61,8 +61,11 @@ function todoEraseDoneItems() {
 
 //Function to retrieve & display stored todo items.
 function todoRetrieve() {
-  var x = "";
-  console.log("'" + x + "' = output of todoRetrieve function.")
+  todoListKeys.sort();
+  for (var i = 0; i < todoListKeys.length; i++) {
+    todoRawInput = localStorage.getItem(todoListKeys[i]);
+    todoConstructItem(todoRawInput);
+  }
 }
 
 //Function to count number of todo items left, not counting those checked off.
