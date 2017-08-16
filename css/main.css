@@ -201,10 +201,6 @@ h2.temp {
   margin-bottom: 1rem;
 }
 
-.todoItemDone {
-  text-decoration-line: line-through;
-}
-
 #todoBox {
   width: 242.7px;
   height: 150px;
@@ -221,24 +217,23 @@ h2.temp {
   min-height: 70%;
   background: rgba(112,128,144,.7);
 }
-
 #todoList {
   list-style-type: none;
   padding: 0;
 }
-
 #todoItemCheckbox {
 	display: inline;
 }
-
 #todoItemName {
 	display: inline;
+}
+.todoItemDone {
+  text-decoration-line: line-through;
 }
 
 #todoInputForm {
   background: rgba(169,169,169,.8);
 }
-
 #todoInputField {
   background: transparent;
   color: rgba(112,128,144,.7);
