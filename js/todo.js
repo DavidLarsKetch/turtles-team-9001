@@ -1,4 +1,5 @@
-var todoRawInput;
+var todoRawInput, todoRandomId;
+var todoListKeys = Object.keys(localStorage);
 
 function todoSubmitListen() {
   var todoForm = document.getElementById("todoInputForm");
