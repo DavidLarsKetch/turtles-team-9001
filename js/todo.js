@@ -2,6 +2,10 @@ var todoRawInput, todoRandomId;
 var todoListKeys = Object.keys(localStorage);
 
 function todoSubmitListen() {
+function todoMakeRandomId() {
+  todoRandomId = "t" + Date.now();
+}
+
   var todoForm = document.getElementById("todoInputForm");
   todoForm.addEventListener("submit", function(event) {
     todoAddNew();
@@ -27,6 +31,9 @@ function todoAddNew() {
     todoTextWrap.appendChild(todoTextNode);
 
     var todoItemWrap = document.createElement("li");
+    todoMakeRandomId();
+    todoItemWrap.setAttribute("id", todoRandomId);
+
     todoItemWrap.appendChild(todoCheckbox);
     todoItemWrap.appendChild(todoTextWrap);
 
