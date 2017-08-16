@@ -70,8 +70,8 @@ function todoRetrieve() {
 
 //Function to count number of todo items left, not counting those checked off.
 function todoCount() {
-  var x = "";
-  console.log("'" + x + "' = output of todoCount function.")
+  var todoNumberOfItems = todoListKeys.length;
+  console.log(todoNumberOfItems);
 }
 
 //Function to store todo items.
