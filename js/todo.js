@@ -43,7 +43,7 @@ function todoMakeRandomId() {
 function todoConstructItem() {
   var todoTextNode = document.createTextNode(todoRawInput);
 
-  if (todoRawInput) {
+  if (todoRawInput.search(/\S/) !== -1) {
     var todoCheckbox = document.createElement("input");
     todoCheckbox.setAttribute("type", "checkbox");
     todoCheckbox.setAttribute("name", "todoItemCheckbox");
