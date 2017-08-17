@@ -1,10 +1,8 @@
 function controlLinks() {
     const theLinksToRemove = document.getElementById('theseLinks');
     const theList = document.getElementById('parentLinksNode');
-    var oldChild;
 
     function removeLinksOnLoad() {
-        //oldChild = theList.removeChild(theLinksToRemove);
         theLinksToRemove.remove();
     }
 
