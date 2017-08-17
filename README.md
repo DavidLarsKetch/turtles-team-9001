@@ -18,7 +18,7 @@ Chingu-Voyage Turtles Team 9001 repo for Chrome extension project.
 
 #### Todo List
 
-- [ ] Todo items are stored & retrieved!
+- [x] Todo items are stored & retrieved!
 - [ ] General styling
 - [ ] Auto-erase todo items after certain interval (e.g., at midnight)
 - [x] 'Enter' instead of button adds new item
