@@ -29,8 +29,11 @@ function todoListenToSubmit() {
   var todoForm = document.getElementById("todoInputForm");
   todoForm.addEventListener("submit", function(event) {
     todoRawInput = document.getElementById("todoInputField").value;
-    todoConstructItem(todoRawInput);
-    todoStore();
+    if (todoRawInput.search(/\S/) !== -1) {
+      todoStore();
+      todoConstructItem(todoRawInput);
+      todoCount();
+    }
     todoForm.reset();
     event.preventDefault();
   });
@@ -43,29 +46,25 @@ function todoMakeRandomId() {
 function todoConstructItem() {
   var todoTextNode = document.createTextNode(todoRawInput);
 
-  if (todoRawInput.search(/\S/) !== -1) {
-    var todoCheckbox = document.createElement("input");
-    todoCheckbox.setAttribute("type", "checkbox");
-    todoCheckbox.setAttribute("name", "todoItemCheckbox");
-    todoCheckbox.setAttribute("id", "todoItemCheckbox");
-    todoCheckbox.addEventListener("click", todoCheckoff);
+  var todoCheckbox = document.createElement("input");
+  todoCheckbox.setAttribute("type", "checkbox");
+  todoCheckbox.setAttribute("name", "todoItemCheckbox");
+  todoCheckbox.setAttribute("id", "todoItemCheckbox");
+  todoCheckbox.addEventListener("click", todoCheckoff);
 
-    var todoTextWrap = document.createElement("p");
-    todoTextWrap.setAttribute("id", "todoItemName");
-    todoTextWrap.appendChild(todoTextNode);
+  var todoTextWrap = document.createElement("p");
+  todoTextWrap.setAttribute("id", "todoItemName");
+  todoTextWrap.appendChild(todoTextNode);
 
-    var todoItemWrap = document.createElement("li");
-    todoMakeRandomId();
-    todoItemWrap.setAttribute("id", todoRandomId);
+  var todoItemWrap = document.createElement("li");
+  todoMakeRandomId();
+  todoItemWrap.setAttribute("id", todoRandomId);
 
-    todoItemWrap.appendChild(todoCheckbox);
-    todoItemWrap.appendChild(todoTextWrap);
+  todoItemWrap.appendChild(todoCheckbox);
+  todoItemWrap.appendChild(todoTextWrap);
 
-    var todoList = document.getElementById("todoList");
-    todoList.appendChild(todoItemWrap);
-
-    todoCount();
-  }
+  var todoList = document.getElementById("todoList");
+  todoList.appendChild(todoItemWrap);
 }
 
 //Function to store todo items.
