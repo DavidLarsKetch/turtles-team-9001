@@ -92,6 +92,9 @@ h4.greeting {
 #linksOnPress {
   cursor: pointer;
 }
+.linksOnPressColor {
+  color: white;
+}
 #linksOnPress:hover {
   color: white;
 }
