@@ -1,15 +1,15 @@
 function controlLinks() {
     const theLinksToRemove = document.getElementById('theseLinks');
-    const theList = document.getElementsByClassName('ourLinks');
+    const theList = document.getElementById('ourLinks');
     var oldChild;
 
     function removeLinksOnLoad() {
-        oldChild = theList[0].removeChild(theLinksToRemove);
+        oldChild = theList.removeChild(theLinksToRemove);
     }
 
     function addRemovedLinks() {
     
-        theList[0].appendChild(oldChild);
+        theList.appendChild(oldChild);
     }
 
     return {
@@ -21,5 +21,5 @@ function controlLinks() {
 const theLinks = controlLinks();
 const currentDiv = document.getElementById('links');
 
-window.onload = theLinks.removeLinksOnLoad();
+theLinks.removeLinksOnLoad();
 currentDiv.onclick = theLinks.addRemovedLinks;
