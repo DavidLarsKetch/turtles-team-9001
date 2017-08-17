@@ -1,15 +1,16 @@
 function controlLinks() {
     const theLinksToRemove = document.getElementById('theseLinks');
-    const theList = document.getElementById('ourLinks');
+    const theList = document.getElementById('parentLinksNode');
     var oldChild;
 
     function removeLinksOnLoad() {
-        oldChild = theList.removeChild(theLinksToRemove);
+        //oldChild = theList.removeChild(theLinksToRemove);
+        theLinksToRemove.remove();
     }
 
     function addRemovedLinks() {
     
-        theList.appendChild(oldChild);
+        theList.appendChild(theLinksToRemove);
     }
 
     return {
@@ -20,6 +21,19 @@ function controlLinks() {
 
 const theLinks = controlLinks();
 const currentDiv = document.getElementById('links');
+const parentNode = document.getElementById('parentLinksNode');
 
 theLinks.removeLinksOnLoad();
-currentDiv.onclick = theLinks.addRemovedLinks;
+
+if (parentNode.hasChildNodes) {
+    console.log(parentNode.childElementCount);
+}
+
+currentDiv.onclick = function() {
+    if (parentNode.childElementCount == 0) {
+        theLinks.addRemovedLinks();
+    }
+    else {
+        theLinks.removeLinksOnLoad();
+    }
+}
