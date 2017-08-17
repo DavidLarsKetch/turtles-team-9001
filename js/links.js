@@ -20,7 +20,7 @@ function controlLinks() {
 }
 
 const theLinks = controlLinks();
-const currentDiv = document.getElementById('links');
+const currentDiv = document.getElementById('linksOnPress');
 const parentNode = document.getElementById('parentLinksNode');
 
 theLinks.removeLinksOnLoad();
