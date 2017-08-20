@@ -35,9 +35,13 @@ ol, ul {
  */
 :root {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  /* This is in Momentum but it's annoying as fuck */
-  /*text-shadow: 0 0 25px rgba(0,0,0,0.3);*/
-  background: rgba(236, 231, 211, 1);
+  color: #eee;
+  text-shadow: 0 0 30px rgba(0,0,0,0.4);
+  background: #101;
+}
+body {
+  background-position: center;
+  background-size: cover;
 }
 .container {
   display: grid;
@@ -60,9 +64,11 @@ ol, ul {
 }
 h1.time {
   font-size: 10rem;
+  font-weight: 500;
 }
 h4.greeting {
-  font-size: 2rem;
+  font-size: 3rem;
+  font-weight: 500;
 }
 
 /*
@@ -121,6 +127,10 @@ h2.temp {
   margin-right: 12px;
   margin-bottom: 4px;
   content: '';
+  fill: #fff;
+}
+.icon::before .d {
+  fill: #fff;
 }
 .icon01d::before {
   background-image: url('../icons/sun.svg');
