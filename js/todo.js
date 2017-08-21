@@ -30,8 +30,8 @@ function todoListenToSubmit() {
   todoForm.addEventListener("submit", function(event) {
     todoRawInput = document.getElementById("todoInputField").value;
     if (todoRawInput.search(/\S/) !== -1) {
-      todoStore();
       todoConstructItem(todoRawInput);
+      window.localStorage.setItem(todoRandomId, todoRawInput);
       todoCount();
     }
     todoForm.reset();
@@ -65,11 +65,6 @@ function todoConstructItem() {
 
   var todoList = document.getElementById("todoList");
   todoList.appendChild(todoItemWrap);
-}
-
-//Function to store todo items.
-function todoStore() {
-  window.localStorage.setItem(todoRandomId, todoRawInput);
 }
 
 //This function should give the stored item a timestamp to be used for erasing items at a certain interval.
