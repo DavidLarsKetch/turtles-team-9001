@@ -16,6 +16,7 @@ function todoEraseDoneItems() {
 
 //Function to retrieve & display stored todo items.
 function todoRetrieve() {
+  var todoListKeys = Object.keys(localStorage);
   todoListKeys.sort();
   for (var i = 0; i < todoListKeys.length; i++) {
     todoRawInput = localStorage.getItem(todoListKeys[i]);
@@ -80,6 +81,7 @@ function todoCheckoff() {
 
 //Function for clearing localStorage while developing. Erase in production code.
 function todoDevClearStorage () {
+  var todoListKeys = Object.keys(localStorage);
   for (var i = 0; i < todoListKeys.length; i++) {
     localStorage.removeItem(todoListKeys[i]);
   };
