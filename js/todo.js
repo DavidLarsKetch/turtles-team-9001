@@ -1,5 +1,10 @@
 var todoRawInput, todoRandomId;
-var todoListKeys = Object.keys(localStorage);
+
+function todoBoxDisplay() {
+  document.getElementById("todoButton").addEventListener("click", function() {
+    document.getElementById("todoBox").classList.toggle("todoBoxOff");
+  })
+}
 
 //Function to erase crossed out todos after certain interval.
 //All crossed off items should be erased at the same time, e.g., at 00:00.
@@ -86,4 +91,5 @@ window.onload = function(){
   todoRetrieve();
   todoCount();
   todoListenToSubmit();
+  todoBoxDisplay();
 }
