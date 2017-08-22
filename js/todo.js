@@ -1,4 +1,4 @@
-var todoRawInput, todoRandomId, todoCurrentKey;
+var todoRawInput, todoRandomId, todoCurrentKey, todoCurrentKeyLastPlace;
 
 function todoBoxDisplay() {
   document.getElementById("todoButton").addEventListener("click", function() {
@@ -20,8 +20,9 @@ function todoRetrieve() {
   todoListKeys.sort();
   for (var i = 0; i < todoListKeys.length; i++) {
     todoCurrentKey = todoListKeys[i];
-    todoRawInput = localStorage.getItem(todoCurrentKey);
-    todoConstructItem(todoRawInput, todoCurrentKey);
+    todoCurrentKeyLastPlace = todoCurrentKey.slice(-1);
+      todoRawInput = localStorage.getItem(todoCurrentKey);
+      todoConstructItem(todoRawInput, todoCurrentKey, todoCurrentKeyLastPlace);
   }
 }
 
@@ -57,10 +58,16 @@ function todoConstructItem() {
   todoCheckbox.setAttribute("name", "todoItemCheckbox");
   todoCheckbox.setAttribute("id", "todoItemCheckbox");
   todoCheckbox.addEventListener("click", todoCheckoff);
+  if (todoCurrentKeyLastPlace === "z") {
+    todoCheckbox.setAttribute("checked", true);
+  }
 
   var todoTextWrap = document.createElement("p");
   todoTextWrap.setAttribute("id", "todoItemName");
   todoTextWrap.appendChild(todoTextNode);
+  if (todoCurrentKeyLastPlace === "z") {
+    todoTextWrap.setAttribute("class", "todoItemDone");
+  }
 
   var todoItemWrap = document.createElement("li");
   if (todoCurrentKey === undefined) {
@@ -80,8 +87,16 @@ function todoConstructItem() {
 
 //This function should give the stored item a timestamp to be used for erasing items at a certain interval.
 function todoCheckoff() {
-  var x = this.nextElementSibling;
-  x.classList.toggle("todoItemDone");
+  var todoSibling = this.nextElementSibling;
+  todoSibling.classList.toggle("todoItemDone");
+
+  var todoStoreId = this.parentElement.getAttribute("id");
+  var todoStoredItem = window.localStorage.getItem(todoStoreId);
+  var todoDeleteId = todoStoreId + "z";
+
+  window.localStorage.removeItem(todoStoreId);
+  window.localStorage.setItem(todoDeleteId, todoStoredItem);
+
   todoCount();
 }
 
