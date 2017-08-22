@@ -285,6 +285,7 @@ h2.temp {
 }
 .todoItemDone {
   text-decoration-line: line-through;
+	color: rgb(169,169,169);
 }
 
 #todoInputForm {
