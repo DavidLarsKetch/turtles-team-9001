@@ -76,7 +76,7 @@
 
       <!-- Todo -->
       <div id="todo">
-        <div id="todoBox">
+        <div id="todoBox" class="todoBoxOff">
           <div id="todoHeader">
             <span>Todo</span>
           </div>
@@ -85,14 +85,13 @@
 
             </ul>
           </div>
-          <form id="todoInputForm" autocomplete="off">
-            <span>
-              <input id="todoInputField" type="text" name="newTodoInputField" placeholder="New Todo">
-            </span>
+          <form id="todoInputForm">
+            <input id="todoInputField" type="text" name="newTodoInputField" placeholder="New Todo">
           </form>
         </div>
-      </div>
-
+        <div>
+          <span id="todoButton">Todo</span>
+        </div>
     </div>
 
     <!-- Vendor scripts -->
