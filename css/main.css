@@ -98,6 +98,9 @@ h4.greeting {
 #linksOnPress:hover {
   color: white;
 }
+img:hover {
+  filter: opacity(25%);
+}
 #theseLinks {
   background: rgba(112,128,144,.7);
 }
