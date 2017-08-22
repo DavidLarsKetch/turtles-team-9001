@@ -85,17 +85,8 @@ function todoCheckoff() {
   todoCount();
 }
 
-//Function for clearing localStorage while developing. Erase in production code.
-function todoDevClearStorage () {
-  var todoListKeys = Object.keys(localStorage);
-  for (var i = 0; i < todoListKeys.length; i++) {
-    localStorage.removeItem(todoListKeys[i]);
-  };
-}
-
 window.onload = function(){
   todoEraseDoneItems();
-//  todoDevClearStorage(); //Clear double slash to use
   todoRetrieve();
   todoCount();
   todoListenToSubmit();
