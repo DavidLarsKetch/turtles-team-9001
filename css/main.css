@@ -35,9 +35,13 @@ ol, ul {
  */
 :root {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  /* This is in Momentum but it's annoying as fuck */
-  /*text-shadow: 0 0 25px rgba(0,0,0,0.3);*/
-  background: rgba(236, 231, 211, 1);
+  color: #eee;
+  text-shadow: 0 0 30px rgba(0,0,0,0.4);
+  background: #101;
+}
+body {
+  background-position: center;
+  background-size: cover;
 }
 .container {
   display: grid;
@@ -60,9 +64,11 @@ ol, ul {
 }
 h1.time {
   font-size: 10rem;
+  font-weight: 500;
 }
 h4.greeting {
-  font-size: 2rem;
+  font-size: 3rem;
+  font-weight: 500;
 }
 
 /*
@@ -121,6 +127,10 @@ h2.temp {
   margin-right: 12px;
   margin-bottom: 4px;
   content: '';
+  fill: #fff;
+}
+.icon::before .d {
+  fill: #fff;
 }
 .icon01d::before {
   background-image: url('../icons/sun.svg');
@@ -168,12 +178,26 @@ h2.temp {
  */
 #info {
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-end;
-  grid-column: 1 / 2;
+  justify-content: flex-end;
+  align-items: flex-start;
+  flex-direction: column;
+  grid-column: 1 / 3;
   grid-row: 8 / 9;
   margin-bottom: 1rem;
   margin-left: 1rem;
+}
+#info p {
+  font-size: .625rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+#info p#bgTitle {
+  font-size: .75rem;
+  margin-bottom: .5rem;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.8);
+}
+#info p a {
+  color: inherit;
 }
 
 /*
