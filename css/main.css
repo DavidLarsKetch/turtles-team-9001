@@ -261,16 +261,17 @@ h2.temp {
 }
 
 #todoHeader {
-  color: white;
-  height: 18.54px;
-  background: rgba(169,169,169,.8);
-	padding-top: 3px;
+	color: black;
+  height: 23.54px;
+  background: rgba(255,255,255,.75);
+	padding: 5px 0 0 5px;
+
 }
 
 #todoBody {
-  color: white;
+	color: black;
   min-height: 86.53px;
-  background: rgba(112,128,144,.7);
+	background: rgba(255,255,255,.75);
 }
 #todoList {
   list-style-type: none;
@@ -287,12 +288,14 @@ h2.temp {
 }
 
 #todoInputForm {
-  background: rgba(169,169,169,.8);
+  background: rgba(255,255,255,.75);
 }
 #todoInputField {
   background: transparent;
-  color: rgba(112,128,144,.7);
+  color: rgba(112,128,144);
   border: none;
 	width:200px;
-  height:21.53px;
+  height:28.53px;
+	padding-left: 5px;
+	color: black;
 }
