@@ -1,54 +1,9 @@
 var todoRawInput, todoRandomId;
-var todoListKeys = Object.keys(localStorage);
 
-function todoMakeRandomId() {
-  todoRandomId = "t" + Date.now();
-}
-
-function todoListenToSubmit() {
-  var todoForm = document.getElementById("todoInputForm");
-  todoForm.addEventListener("submit", function(event) {
-    todoRawInput = document.getElementById("todoInputField").value;
-    todoConstructItem(todoRawInput);
-    todoStore();
-    todoForm.reset();
-    event.preventDefault();
-  });
-}
-
-function todoConstructItem() {
-  var todoTextNode = document.createTextNode(todoRawInput);
-
-  if (todoRawInput) {
-    var todoCheckbox = document.createElement("input");
-    todoCheckbox.setAttribute("type", "checkbox");
-    todoCheckbox.setAttribute("name", "todoItemCheckbox");
-    todoCheckbox.setAttribute("id", "todoItemCheckbox");
-    todoCheckbox.addEventListener("click", todoCheckoff);
-
-    var todoTextWrap = document.createElement("p");
-    todoTextWrap.setAttribute("id", "todoItemName");
-    todoTextWrap.appendChild(todoTextNode);
-
-    var todoItemWrap = document.createElement("li");
-    todoMakeRandomId();
-    todoItemWrap.setAttribute("id", todoRandomId);
-
-    todoItemWrap.appendChild(todoCheckbox);
-    todoItemWrap.appendChild(todoTextWrap);
-
-    var todoList = document.getElementById("todoList");
-    todoList.appendChild(todoItemWrap);
-
-    todoCount();
-  }
-}
-
-//This function should give the stored item a timestamp to be used for erasing items at a certain interval.
-function todoCheckoff() {
-  var x = this.nextElementSibling;
-  x.classList.toggle("todoItemDone");
-  todoCount();
+function todoBoxDisplay() {
+  document.getElementById("todoButton").addEventListener("click", function() {
+    document.getElementById("todoBox").classList.toggle("todoBoxOff");
+  })
 }
 
 //Function to erase crossed out todos after certain interval.
@@ -61,6 +16,7 @@ function todoEraseDoneItems() {
 
 //Function to retrieve & display stored todo items.
 function todoRetrieve() {
+  var todoListKeys = Object.keys(localStorage);
   todoListKeys.sort();
   for (var i = 0; i < todoListKeys.length; i++) {
     todoRawInput = localStorage.getItem(todoListKeys[i]);
@@ -70,17 +26,62 @@ function todoRetrieve() {
 
 //Function to count number of todo items left, not counting those checked off.
 function todoCount() {
-  var todoNumberOfItems = todoListKeys.length;
-  console.log(todoNumberOfItems);
+  var todoNumberOfItems = Object.keys(localStorage).length;
 }
 
-//Function to store todo items.
-function todoStore() {
-  window.localStorage.setItem(todoRandomId, todoRawInput);
+
+function todoListenToSubmit() {
+  var todoForm = document.getElementById("todoInputForm");
+  todoForm.addEventListener("submit", function(event) {
+    todoRawInput = document.getElementById("todoInputField").value;
+    if (todoRawInput.search(/\S/) !== -1) {
+      todoConstructItem(todoRawInput);
+      window.localStorage.setItem(todoRandomId, todoRawInput);
+      todoCount();
+    }
+    todoForm.reset();
+    event.preventDefault();
+  });
+}
+
+function todoMakeRandomId() {
+  todoRandomId = "t" + Date.now();
+}
+
+function todoConstructItem() {
+  var todoTextNode = document.createTextNode(todoRawInput);
+
+  var todoCheckbox = document.createElement("input");
+  todoCheckbox.setAttribute("type", "checkbox");
+  todoCheckbox.setAttribute("name", "todoItemCheckbox");
+  todoCheckbox.setAttribute("id", "todoItemCheckbox");
+  todoCheckbox.addEventListener("click", todoCheckoff);
+
+  var todoTextWrap = document.createElement("p");
+  todoTextWrap.setAttribute("id", "todoItemName");
+  todoTextWrap.appendChild(todoTextNode);
+
+  var todoItemWrap = document.createElement("li");
+  todoMakeRandomId();
+  todoItemWrap.setAttribute("id", todoRandomId);
+
+  todoItemWrap.appendChild(todoCheckbox);
+  todoItemWrap.appendChild(todoTextWrap);
+
+  var todoList = document.getElementById("todoList");
+  todoList.appendChild(todoItemWrap);
+}
+
+//This function should give the stored item a timestamp to be used for erasing items at a certain interval.
+function todoCheckoff() {
+  var x = this.nextElementSibling;
+  x.classList.toggle("todoItemDone");
+  todoCount();
 }
 
 //Function for clearing localStorage while developing. Erase in production code.
 function todoDevClearStorage () {
+  var todoListKeys = Object.keys(localStorage);
   for (var i = 0; i < todoListKeys.length; i++) {
     localStorage.removeItem(todoListKeys[i]);
   };
@@ -92,4 +93,5 @@ window.onload = function(){
   todoRetrieve();
   todoCount();
   todoListenToSubmit();
+  todoBoxDisplay();
 }
