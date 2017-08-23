@@ -90,12 +90,23 @@ function todoCheckoff() {
   var todoSibling = this.nextElementSibling;
   todoSibling.classList.toggle("todoItemDone");
 
-  var todoStoreId = this.parentElement.getAttribute("id");
-  var todoStoredItem = window.localStorage.getItem(todoStoreId);
-  var todoDeleteId = todoStoreId + "z";
+  var todoCurrentId = this.parentElement.getAttribute("id");
+  var todoCurrentItem = todoSibling.innerHTML;
 
-  window.localStorage.removeItem(todoStoreId);
-  window.localStorage.setItem(todoDeleteId, todoStoredItem);
+  var todoCurrentKeyLastPlace = todoCurrentId.slice(-1);
+  var todoNewId;
+
+  if (todoCurrentKeyLastPlace === "z") {
+    todoNewId = todoCurrentId.split('');
+    todoNewId.pop();
+    todoNewId = todoNewId.join('');
+  } else {
+    todoNewId = todoCurrentId + "z";
+  }
+
+  window.localStorage.removeItem(todoCurrentId);
+  window.localStorage.setItem(todoNewId, todoCurrentItem);
+  this.parentElement.setAttribute("id", todoNewId);
 
   todoCount();
 }
