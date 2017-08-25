@@ -1,4 +1,4 @@
-var todoRawInput, todoRandomId, todoCurrentKey, todoCurrentKeyLastPlace;
+var todoLastPurge, todoListKeys, todoRawInput, todoRandomId, todoCurrentKey, todoCurrentKeyLastPlace;
 
 function todoBoxDisplay() {
   document.getElementById("todoButton").addEventListener("click", function() {
