@@ -7,7 +7,6 @@ function todoBoxDisplay() {
 }
 
 function todoInitializePurgeDate() {
-  console.log("todoInitializePurgeDate is running.");
   var x = new Date();
   var d = x.getDate();
   var m = x.getMonth();
@@ -17,10 +16,8 @@ function todoInitializePurgeDate() {
   window.localStorage.setItem("zzlastPurge", todoLastPurge);
 }
 
-//Upon loading extension, before stored todo items are displayed, this function runs, erasing any checked off todo items that have lapsed the time interval.
 function todoEraseDoneItems() {
   var x = "";
-  console.log("'" + x + "' = output of todoEraseDoneItems function.");
 }
 
 //Function to retrieve & display stored todo items.
@@ -39,7 +36,6 @@ function todoRetrieve() {
 function todoCount() {
   var todoNumberOfItems = Object.keys(localStorage).length;
 }
-
 
 function todoListenToSubmit() {
   var todoForm = document.getElementById("todoInputForm");
@@ -79,7 +75,7 @@ function todoConstructItem() {
   }
 
   var todoItemWrap = document.createElement("li");
-  if (todoCurrentKey === undefined) {
+  if (!todoCurrentKey || todoCurrentKey === "undefined") {
     todoMakeRandomId();
     todoItemWrap.setAttribute("id", todoRandomId);
   } else {
@@ -94,7 +90,6 @@ function todoConstructItem() {
   todoList.appendChild(todoItemWrap);
 }
 
-//This function should give the stored item a timestamp to be used for erasing items at a certain interval.
 function todoCheckoff() {
   var todoSibling = this.nextElementSibling;
   todoSibling.classList.toggle("todoItemDone");
@@ -121,9 +116,9 @@ function todoCheckoff() {
 }
 
 window.onload = function(){
+  todoLastPurge = window.localStorage.getItem("zzLastPurge");
   todoListKeys = Object.keys(localStorage);
 
-  todoLastPurge = window.localStorage.getItem("zzLastPurge");
   if (!todoLastPurge) {
     todoInitializePurgeDate();
   }
