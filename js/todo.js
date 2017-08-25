@@ -17,7 +17,19 @@ function todoInitializePurgeDate() {
 }
 
 function todoEraseDoneItems() {
-  var x = "";
+  var todoCurrentTime = Date.now();
+  var todoPurgeDifference = todoCurrentTime - todoLastPurge;
+//  if (todoPurgeDifference > 86400000) {
+  if(todoPurgeDifference > 30000)
+    for (var i = 0; i < todoListKeys.length; i++) {
+      todoCurrentKey = todoListKeys[i];
+      todoCurrentKeyLastPlace = todoCurrentKey.slice(-1);
+      if (todoCurrentKeyLastPlace === "z") {
+        window.localStorage.removeItem(todoCurrentKey);
+      }
+    }
+    window.localStorage.removeItem("zzlastPurge");
+    window.localStorage.setItem("zzLastPurge", todoCurrentTime);
 }
 
 //Function to retrieve & display stored todo items.
@@ -122,8 +134,9 @@ window.onload = function(){
   if (!todoLastPurge) {
     todoInitializePurgeDate();
   }
-
-  todoEraseDoneItems(todoLastPurge);
+  if (todoListKeys.length > 1) {
+    todoEraseDoneItems(todoLastPurge);
+  }
   todoRetrieve();
   todoCount();
   todoListenToSubmit();
