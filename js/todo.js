@@ -27,6 +27,7 @@ function todoEraseDoneItems() {
         window.localStorage.removeItem(todoCurrentKey);
       }
     }
+  }
     window.localStorage.removeItem("zzlastPurge");
     todoSetPurgeTime();
     window.localStorage.setItem("zzLastPurge", todoLastPurge);
