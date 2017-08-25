@@ -6,8 +6,17 @@ function todoBoxDisplay() {
   })
 }
 
-//Function to erase crossed out todos after certain interval.
-//All crossed off items should be erased at the same time, e.g., at 00:00.
+function todoInitializePurgeDate() {
+  console.log("todoInitializePurgeDate is running.");
+  var x = new Date();
+  var d = x.getDate();
+  var m = x.getMonth();
+  var y = x.getFullYear();
+  var z = new Date(y, m, d, 03, 00, 00, 0);
+  todoLastPurge = Date.parse("'" + z + "'");
+  window.localStorage.setItem("zzlastPurge", todoLastPurge);
+}
+
 //Upon loading extension, before stored todo items are displayed, this function runs, erasing any checked off todo items that have lapsed the time interval.
 function todoEraseDoneItems() {
   var x = "";
