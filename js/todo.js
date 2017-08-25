@@ -6,14 +6,13 @@ function todoBoxDisplay() {
   })
 }
 
-function todoInitializePurgeDate() {
+function todoSetPurgeTime() {
   var x = new Date();
   var d = x.getDate();
   var m = x.getMonth();
   var y = x.getFullYear();
   var z = new Date(y, m, d, 03, 00, 00, 0);
   todoLastPurge = Date.parse("'" + z + "'");
-  window.localStorage.setItem("zzlastPurge", todoLastPurge);
 }
 
 function todoEraseDoneItems() {
@@ -29,7 +28,6 @@ function todoEraseDoneItems() {
       }
     }
     window.localStorage.removeItem("zzlastPurge");
-    window.localStorage.setItem("zzLastPurge", todoCurrentTime);
 }
 
 function todoRetrieve() {
@@ -132,7 +130,8 @@ window.onload = function(){
   todoListKeys = Object.keys(localStorage);
 
   if (!todoLastPurge) {
-    todoInitializePurgeDate();
+    todoSetPurgeTime();
+    window.localStorage.setItem("zzlastPurge", todoLastPurge);
   }
   if (todoListKeys.length > 1) {
     todoEraseDoneItems(todoLastPurge);
