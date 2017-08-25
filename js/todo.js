@@ -18,8 +18,8 @@ function todoSetPurgeTime() {
 function todoEraseDoneItems() {
   var todoCurrentTime = Date.now();
   var todoPurgeDifference = todoCurrentTime - todoLastPurge;
-//  if (todoPurgeDifference > 86400000) {
-  if(todoPurgeDifference > 30000)
+  if (todoPurgeDifference > 86400000) {
+//  if(todoPurgeDifference > 30000)
     for (var i = 0; i < todoListKeys.length; i++) {
       todoCurrentKey = todoListKeys[i];
       todoCurrentKeyLastPlace = todoCurrentKey.slice(-1);
@@ -28,6 +28,8 @@ function todoEraseDoneItems() {
       }
     }
     window.localStorage.removeItem("zzlastPurge");
+    todoSetPurgeTime();
+    window.localStorage.setItem("zzLastPurge", todoLastPurge);
 }
 
 function todoRetrieve() {
