@@ -121,7 +121,14 @@ function todoCheckoff() {
 }
 
 window.onload = function(){
-  todoEraseDoneItems();
+  todoListKeys = Object.keys(localStorage);
+
+  todoLastPurge = window.localStorage.getItem("zzLastPurge");
+  if (!todoLastPurge) {
+    todoInitializePurgeDate();
+  }
+
+  todoEraseDoneItems(todoLastPurge);
   todoRetrieve();
   todoCount();
   todoListenToSubmit();
