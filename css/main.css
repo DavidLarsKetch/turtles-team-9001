@@ -265,13 +265,17 @@ h2.temp {
   height: 23.54px;
   background: rgba(255,255,255,.75);
 	padding: 5px 0 0 5px;
-
+}
+#todoCounter {
+	padding-left: 7px;
+	color: Grey;
 }
 
 #todoBody {
 	color: black;
   min-height: 86.53px;
 	background: rgba(255,255,255,.75);
+	padding-bottom: 4px;
 }
 #todoList {
   list-style-type: none;
