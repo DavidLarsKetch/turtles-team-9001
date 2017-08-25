@@ -32,15 +32,15 @@ function todoEraseDoneItems() {
     window.localStorage.setItem("zzLastPurge", todoCurrentTime);
 }
 
-//Function to retrieve & display stored todo items.
 function todoRetrieve() {
-  var todoListKeys = Object.keys(localStorage);
+  todoListKeys = Object.keys(localStorage);
   todoListKeys.sort();
-  for (var i = 0; i < todoListKeys.length; i++) {
+  for (var i = 0; i < (todoListKeys.length - 1); i++) {
     todoCurrentKey = todoListKeys[i];
     todoCurrentKeyLastPlace = todoCurrentKey.slice(-1);
-      todoRawInput = localStorage.getItem(todoCurrentKey);
-      todoConstructItem(todoRawInput, todoCurrentKey, todoCurrentKeyLastPlace);
+    todoRawInput = localStorage.getItem(todoCurrentKey);
+
+    todoConstructItem(todoRawInput, todoCurrentKey, todoCurrentKeyLastPlace);
   }
 }
 
