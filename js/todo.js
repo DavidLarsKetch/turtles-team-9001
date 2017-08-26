@@ -1,4 +1,4 @@
-var todoRawInput, todoRandomId;
+var todoLastPurge, todoListKeys, todoRawInput, todoRandomId, todoCurrentKey, todoCurrentKeyLastPlace;
 
 function todoBoxDisplay() {
   document.getElementById("todoButton").addEventListener("click", function() {
@@ -6,29 +6,54 @@ function todoBoxDisplay() {
   })
 }
 
-//Function to erase crossed out todos after certain interval.
-//All crossed off items should be erased at the same time, e.g., at 00:00.
-//Upon loading extension, before stored todo items are displayed, this function runs, erasing any checked off todo items that have lapsed the time interval.
-function todoEraseDoneItems() {
-  var x = "";
-  console.log("'" + x + "' = output of todoEraseDoneItems function.");
+function todoSetPurgeTime() {
+  var x = new Date();
+  var d = x.getDate();
+  var m = x.getMonth();
+  var y = x.getFullYear();
+  var z = new Date(y, m, d, 03, 00, 00, 0);
+  todoLastPurge = Date.parse("'" + z + "'");
 }
 
-//Function to retrieve & display stored todo items.
+function todoEraseDoneItems() {
+  var todoCurrentTime = Date.now();
+  var todoPurgeDifference = todoCurrentTime - todoLastPurge;
+  if (todoPurgeDifference > 86400000) {
+//  if(todoPurgeDifference > 30000)
+    for (var i = 0; i < todoListKeys.length; i++) {
+      todoCurrentKey = todoListKeys[i];
+      todoCurrentKeyLastPlace = todoCurrentKey.slice(-1);
+      if (todoCurrentKeyLastPlace === "z") {
+        window.localStorage.removeItem(todoCurrentKey);
+      }
+    }
+  }
+    window.localStorage.removeItem("zzlastPurge");
+    todoSetPurgeTime();
+    window.localStorage.setItem("zzLastPurge", todoLastPurge);
+}
+
 function todoRetrieve() {
-  var todoListKeys = Object.keys(localStorage);
+  todoListKeys = Object.keys(localStorage);
   todoListKeys.sort();
-  for (var i = 0; i < todoListKeys.length; i++) {
-    todoRawInput = localStorage.getItem(todoListKeys[i]);
-    todoConstructItem(todoRawInput);
+  for (var i = 0; i < (todoListKeys.length - 1); i++) {
+    todoCurrentKey = todoListKeys[i];
+    todoCurrentKeyLastPlace = todoCurrentKey.slice(-1);
+    todoRawInput = localStorage.getItem(todoCurrentKey);
+
+    todoConstructItem(todoRawInput, todoCurrentKey, todoCurrentKeyLastPlace);
   }
 }
 
 //Function to count number of todo items left, not counting those checked off.
 function todoCount() {
-  var todoNumberOfItems = Object.keys(localStorage).length;
-}
+  todoListKeys = Object.keys(localStorage);
 
+  var todoNumberOfItems = todoListKeys.filter(function(key){
+    return key.length === 14;
+  })
+  document.getElementById("todoCounter").innerHTML = todoNumberOfItems.length;
+}
 
 function todoListenToSubmit() {
   var todoForm = document.getElementById("todoInputForm");
@@ -56,14 +81,25 @@ function todoConstructItem() {
   todoCheckbox.setAttribute("name", "todoItemCheckbox");
   todoCheckbox.setAttribute("id", "todoItemCheckbox");
   todoCheckbox.addEventListener("click", todoCheckoff);
+  if (todoCurrentKeyLastPlace === "z") {
+    todoCheckbox.setAttribute("checked", true);
+  }
 
   var todoTextWrap = document.createElement("p");
   todoTextWrap.setAttribute("id", "todoItemName");
   todoTextWrap.appendChild(todoTextNode);
+  if (todoCurrentKeyLastPlace === "z") {
+    todoTextWrap.setAttribute("class", "todoItemDone");
+  }
 
   var todoItemWrap = document.createElement("li");
-  todoMakeRandomId();
-  todoItemWrap.setAttribute("id", todoRandomId);
+  if (!todoCurrentKey || todoCurrentKey === "undefined") {
+    todoMakeRandomId();
+    todoItemWrap.setAttribute("id", todoRandomId);
+  } else {
+    todoItemWrap.setAttribute("id", todoCurrentKey);
+    todoCurrentKey = undefined;
+  }
 
   todoItemWrap.appendChild(todoCheckbox);
   todoItemWrap.appendChild(todoTextWrap);
@@ -72,24 +108,42 @@ function todoConstructItem() {
   todoList.appendChild(todoItemWrap);
 }
 
-//This function should give the stored item a timestamp to be used for erasing items at a certain interval.
 function todoCheckoff() {
-  var x = this.nextElementSibling;
-  x.classList.toggle("todoItemDone");
+  var todoSibling = this.nextElementSibling;
+  todoSibling.classList.toggle("todoItemDone");
+
+  var todoCurrentId = this.parentElement.getAttribute("id");
+  var todoCurrentItem = todoSibling.innerHTML;
+
+  var todoCurrentKeyLastPlace = todoCurrentId.slice(-1);
+  var todoNewId;
+
+  if (todoCurrentKeyLastPlace === "z") {
+    todoNewId = todoCurrentId.split('');
+    todoNewId.pop();
+    todoNewId = todoNewId.join('');
+  } else {
+    todoNewId = todoCurrentId + "z";
+  }
+
+  window.localStorage.removeItem(todoCurrentId);
+  window.localStorage.setItem(todoNewId, todoCurrentItem);
+  this.parentElement.setAttribute("id", todoNewId);
+
   todoCount();
 }
 
-//Function for clearing localStorage while developing. Erase in production code.
-function todoDevClearStorage () {
-  var todoListKeys = Object.keys(localStorage);
-  for (var i = 0; i < todoListKeys.length; i++) {
-    localStorage.removeItem(todoListKeys[i]);
-  };
-}
-
 window.onload = function(){
-  todoEraseDoneItems();
-//  todoDevClearStorage(); //Clear double slash to use
+  todoLastPurge = window.localStorage.getItem("zzLastPurge");
+  todoListKeys = Object.keys(localStorage);
+
+  if (!todoLastPurge) {
+    todoSetPurgeTime();
+    window.localStorage.setItem("zzlastPurge", todoLastPurge);
+  }
+  if (todoListKeys.length > 1) {
+    todoEraseDoneItems(todoLastPurge);
+  }
   todoRetrieve();
   todoCount();
   todoListenToSubmit();
