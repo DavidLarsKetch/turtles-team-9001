@@ -249,7 +249,9 @@ h2.temp {
 	user-select: none;
 	cursor: pointer;
 }
-
+#todoButton:hover {
+  color: white;
+}
 #todoBox {
   width: 200px;
   min-height: 123.6px;
