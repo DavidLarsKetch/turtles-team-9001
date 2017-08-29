@@ -36,7 +36,7 @@ function todoEraseDoneItems() {
 function todoRetrieve() {
   todoListKeys = Object.keys(localStorage);
   todoListKeys.sort();
-  for (var i = 0; i < (todoListKeys.length - 1); i++) {
+  for (var i = 0; i < (todoListKeys.length - 2); i++) {
     todoCurrentKey = todoListKeys[i];
     todoCurrentKeyLastPlace = todoCurrentKey.slice(-1);
     todoRawInput = localStorage.getItem(todoCurrentKey);
