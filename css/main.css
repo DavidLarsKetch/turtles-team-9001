@@ -105,15 +105,14 @@ h4.greeting {
 #linksOnPress:hover {
   color: white;
 }
-img:hover {
-  filter: opacity(25%);
-}
 #theseLinks {
-  background: rgba(112,128,144,.7);
+  color: rgba(255, 255, 255, 0.8);
 }
-.linksHeader {
-  background: rgba(169,169,169,.8);
-  color: white;
+#theseLinks div {
+  margin-top: .5rem;
+}
+#theseLinks a {
+  color: inherit;
 }
 #ourLinks {
   width: 100px;
