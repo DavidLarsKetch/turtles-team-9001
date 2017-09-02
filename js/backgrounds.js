@@ -34,6 +34,7 @@
 
   if (window.localStorage.getItem('bgSrc')) {
     setBackgroundSource(window.localStorage.getItem('bgSrc'));
+    document.querySelector('[value="' + window.localStorage.getItem('bgSrc') + '"]').setAttribute('checked', true);
   } else {
     setBackgroundSource('earthporn');
   }
@@ -51,18 +52,21 @@
     if (!window.localStorage.getItem('bgSrc') || window.localStorage.getItem('bgSrc') != 'earthporn') {
       window.localStorage.setItem('bgSrc', 'earthporn');
       window.bgRefresh('earthporn');
+      document.getElementById('info').classList.toggle('expand');
     }
   });
   document.getElementById('imgSrc2').addEventListener('change', () => {
     if (!window.localStorage.getItem('bgSrc') || window.localStorage.getItem('bgSrc') != 'flickr') {
       window.localStorage.setItem('bgSrc', 'flickr');
       window.bgRefresh('flickr');
+      document.getElementById('info').classList.toggle('expand');
     }
   });
   document.getElementById('imgSrc3').addEventListener('change', () => {
     if (!window.localStorage.getItem('bgSrc') || window.localStorage.getItem('bgSrc') != '500px') {
       window.localStorage.setItem('bgSrc', '500px');
       window.bgRefresh('500px');
+      document.getElementById('info').classList.toggle('expand');
     }
   });
 })();
