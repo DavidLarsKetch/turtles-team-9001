@@ -17,6 +17,15 @@
         document.getElementById('bgUser').innerHTML = img.author + ' on <a href="https://www.reddit.com/r/EarthPorn/" target="_blank">r/EarthPorn</a>';
       });
     } else if (src == 'flickr') {
+      axios.get('https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=13a9cb0ba60113a74324c966811a0bec&group_id=364847%40N20&format=json&nojsoncallback=1&extras=owner_name')
+      .then((response) => {
+        var i = Math.floor(Math.random() * 99);
+        var img = response.data.photos.photo[i];
+        console.log(response.data.photos.photo[i]);
+        document.querySelector('body').setAttribute("style", "background-image: url('https://farm" + img.farm + ".staticflickr.com/" + img.server + "/" + img.id + "_" + img.secret + "_h.jpg')");
+        document.getElementById('bgTitle').innerHTML = '<a href="https://www.flickr.com/photos/' + img.owner + '/' + img.id + '" target="_blank">' + img.title.substring(0, 30).trim() + '...</a>';
+        document.getElementById('bgUser').innerHTML = img.ownername + ' on <a href="https://www.flickr.com" target="_blank">Flickr</a>';
+      });
     } else if (src == '500px') {
     } else {
       console.log('Shit... something\'s wrong here....');
