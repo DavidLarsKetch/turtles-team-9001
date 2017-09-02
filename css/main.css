@@ -251,13 +251,13 @@ h2.temp {
   align-items: flex-start;
   justify-content: center;
   color: rgba(255, 255, 255, 0.6);
-  transition: all .25s ease-in-out;
+  transition: all .15s ease-in-out;
 }
 #info.expand #imageSelection {
   opacity: 1;
   visibility: visible;
   bottom: 2.375rem;
-  transition: all .25s ease-in-out;
+  transition: all .15s ease-in-out;
 }
 #info #imageSelection .inputGroup {
   margin-bottom: .5rem;
