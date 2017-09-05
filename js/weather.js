@@ -4,7 +4,7 @@ var cookieJar = localStorage;
 
 
 function geoFallback() {
-  var theCookie = cookieJar.getItem('zzLastKnownCityId');
+  var theCookie = cookieJar.getItem('lastKnownCityId');
   (theCookie) => {
     catsAndDogs(theCookie.lastKnownCityId);
   };
@@ -50,7 +50,7 @@ function catsAndDogs(city) {
       console.log('Weather data retreived!');
       console.log(response);
       lastKnownCityId = response.data.sys.id;
-      cookieJar.setItem('zzLastKnownCityId', lastKnownCityId);
+      cookieJar.setItem('lastKnownCityId', lastKnownCityId);
       document.getElementById('tempC').innerHTML = Math.round(response.data.main.temp - 273.15) + "&deg;C";
       document.getElementById('tempCity').innerHTML = response.data.name;
       var iconId = response.data.weather[0].icon;
