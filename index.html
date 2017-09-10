@@ -2,7 +2,8 @@
   <head>
     <title>Turtle Tab 9001</title>
     <!-- Add individual stylesheets here for each module. -->
-    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
 
   </head>
   <body>
@@ -14,12 +15,6 @@
         <h4 class="greeting">Hello World!</h4>
       </div>
 
-      <!-- Today -->
-      <!-- <div id="today">
-        <p>Today</p>
-      </div> -->
-
-
       <!-- Links -->
       <div id="links">
         <ul id="ourLinks">
@@ -27,31 +22,13 @@
           <div id="parentLinksNode">
             <div id="theseLinks">
               <div>
-                  <li class="linksHeader">Adrian</li>
-                  <a href="https://github.com/bernar83">
-                      <img src="./images/GitHub-Mark-32px.png" alt="github logo">
-                  </a>
-                  <a href="https://www.linkedin.com/in/noel-adrian-bernardo-730b07132/">
-                    <img src="./images/linkedin.png" alt="linkedin logo">
-                  </a>
+                  <li><a href="https://github.com/bernar83"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a> <a href="https://www.linkedin.com/in/noel-adrian-bernardo-730b07132/"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a> Adrian</li>
               </div>
               <div>
-                  <li class="linksHeader">David</li>
-                  <a href="https://github.com/DavidLarsKetch">
-                    <img src="./images/GitHub-Mark-32px.png" alt="github logo">
-                  </a>
-                  <a href="https://www.linkedin.com/in/david-lars-ketch-b915aa125/">
-                    <img src="./images/linkedin.png" alt="linkedin logo">
-                  </a>
+                  <li><a href="https://github.com/DavidLarsKetch"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a> <a href="https://www.linkedin.com/in/david-lars-ketch-b915aa125/"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a> David</li>
               </div>
               <div>
-                  <li class="linksHeader">Jacob</li>
-                  <a href="https://github.com/bakerkretzmar">
-                    <img src="./images/GitHub-Mark-32px.png" alt="github logo">
-                  </a>
-                  <a href="https://www.linkedin.com/in/jacobbakerkretzmar/">
-                    <img src="./images/linkedin.png" alt="linkedin logo">
-                  </a>
+                  <li><a href="https://github.com/bakerkretzmar"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a> <a href="https://www.linkedin.com/in/jacobbakerkretzmar/"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a> Jacob</li>
               </div>
             </div>
           </div>
@@ -66,8 +43,28 @@
 
       <!-- Info -->
       <div id="info">
-        <p id="bgTitle"></p>
-        <p id="bgUser"></p>
+        <div id="imageSelection">
+          <div class="inputGroup">
+            <input type="radio" id="imgSrc1" name="imageSource" value="earthporn">
+            <div class="check"></div>
+            <label for="imgSrc1">r/earthporn</label>
+          </div>
+          <div class="inputGroup">
+            <input type="radio" id="imgSrc2" name="imageSource" value="flickr">
+            <div class="check"></div>
+            <label for="imgSrc2">Flickr</label>
+          </div>
+          <div class="inputGroup">
+            <input type="radio" id="imgSrc3" name="imageSource" value="500px">
+            <div class="check"></div>
+            <label for="imgSrc3">500px</label>
+          </div>
+        </div>
+        <a id="imageSelectionToggle" class="fa-wrap" href="#"><i class="fa fa-cog fa-lg" aria-hidden="true"></i></a>
+        <div class="wrap">
+          <p id="bgTitle"></p>
+          <p id="bgUser"></p>
+        </div>
       </div>
 
       <!-- Quote -->
@@ -79,7 +76,7 @@
       <div id="todo">
         <div id="todoBox" class="todoBoxOff">
           <div id="todoHeader">
-            <span>Todo</span>
+            <span>Todos</span>
             <span id="todoCounter"></span>
           </div>
           <div id="todoBody">
@@ -101,10 +98,10 @@
 
     <!-- Our scripts -->
     <script src="js/time.js"></script>
-    <script src="js/quote.js"></script>
     <script src="js/weather.js"></script>
     <script src="js/links.js"></script>
     <script src="js/todo.js"></script>
     <script src="js/backgrounds.js"></script>
+    <script src="js/questions.js"></script>
   </body>
 </html>
