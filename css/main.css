@@ -98,25 +98,29 @@ h4.greeting {
 }
 #linksOnPress {
   cursor: pointer;
+  color: rgba(255, 255, 255, 0.8)
 }
 .linksOnPressColor {
   color: rgba(255, 255, 255, 0.8);
 }
-#linksOnPress:hover {
-  color: white;
-}
 #theseLinks {
+  margin-top: 1rem;
   color: rgba(255, 255, 255, 0.8);
 }
 #theseLinks div {
-  margin-top: .5rem;
+  margin-top: .625rem;
 }
 #theseLinks a {
   color: inherit;
+  margin-right: .5rem;
+  padding-bottom: 1px;
 }
-#ourLinks {
-  width: 100px;
-  height: 150px;
+#theseLinks div li {
+  display: flex;
+  align-items: flex-end;
+}
+#parentLinksNode {
+  position: absolute;
 }
 
 
