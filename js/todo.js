@@ -26,6 +26,11 @@ function todoSetPurgeTime() {
   window.localStorage.setItem("lastPurge", todoLastPurge);
 }
 
+function todoRetrieve() {
+  let todoItemsJSON = window.localStorage.getItem("todoItemsJSON");
+  return JSON.parse(todoItemsJSON);
+}
+
 }
 
 function todoEraseDoneItems() {
