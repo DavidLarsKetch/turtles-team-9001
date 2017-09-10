@@ -175,6 +175,20 @@ function todoCheckoff() {
   todoCount();
 }
 
+function todoStore(){
+  console.log("todoStore function is running.");
+  todoListKeysToStore = todoListKeysToPrint;
+  console.log(todoListKeysToStore);
+  todoListItemsToStore = todoListItemsToPrint;
+  console.log(todoListItemsToStore);
+  let todoItemsJSON = {};
+  for (let i = 0; i < todoListKeysToPrint.length; i++) {
+    todoItemsJSON[todoListKeysToStore[i]] = todoListItemsToStore[i];
+  }
+  console.log(todoItemsJSON);
+  localStorage.setItem("todoItemsJSON", JSON.stringify(todoItemsJSON));
+}
+
 window.onload = function(){
   todoLastPurge = window.localStorage.getItem("zzLastPurge");
   todoListKeys = Object.keys(localStorage);
