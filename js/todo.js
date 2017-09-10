@@ -16,12 +16,16 @@ function todoInitialize() {
 }
 
 function todoSetPurgeTime() {
-  var x = new Date();
-  var d = x.getDate();
-  var m = x.getMonth();
-  var y = x.getFullYear();
-  var z = new Date(y, m, d, 03, 00, 00, 0);
-  todoLastPurge = Date.parse("'" + z + "'");
+  let x = new Date();
+  let d = x.getDate();
+  let m = x.getMonth();
+  let y = x.getFullYear();
+  let z = new Date(y, m, d, 03, 00, 00, 0);
+
+  let todoLastPurge = Date.parse("'" + z + "'");
+  window.localStorage.setItem("lastPurge", todoLastPurge);
+}
+
 }
 
 function todoEraseDoneItems() {
