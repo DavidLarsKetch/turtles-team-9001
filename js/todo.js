@@ -1,4 +1,4 @@
-var todoLastPurge, todoListKeys, todoRawInput, todoRandomId, todoCurrentKey, todoCurrentKeyLastPlace;
+let todoListKeys, todoRawInput, todoCurrentKey, todoListKeysToPrint, todoListItemsToPrint, todoCurrentKeyLastPlace, todoRandomId;
 
 function todoBoxDisplay() {
   document.getElementById("todoButton").addEventListener("click", function() {
@@ -51,20 +51,9 @@ function todoEraseDoneItems() {
       i++;
     }
   }
-    window.localStorage.removeItem("zzlastPurge");
-    todoSetPurgeTime();
-    window.localStorage.setItem("zzLastPurge", todoLastPurge);
+  todoStore();
 }
 
-function todoRetrieve() {
-  todoListKeys = Object.keys(localStorage);
-  todoListKeys.sort();
-  for (var i = 0; i < (todoListKeys.length - 2); i++) {
-    todoCurrentKey = todoListKeys[i];
-    todoCurrentKeyLastPlace = todoCurrentKey.slice(-1);
-    todoRawInput = localStorage.getItem(todoCurrentKey);
-
-    todoConstructItem(todoRawInput, todoCurrentKey, todoCurrentKeyLastPlace);
 function todoPrintTodos() {
   for (let i = 0; i < todoListKeys.length; i++){
     todoRawInput = todoListItemsToPrint[i];
