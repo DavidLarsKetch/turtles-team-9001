@@ -190,17 +190,30 @@ function todoStore(){
 }
 
 window.onload = function(){
-  todoLastPurge = window.localStorage.getItem("zzLastPurge");
-  todoListKeys = Object.keys(localStorage);
+  const todoInitializeCheck = window.localStorage.getItem("initialization");
 
-  if (!todoLastPurge) {
-    todoSetPurgeTime();
-    window.localStorage.setItem("zzlastPurge", todoLastPurge);
+  if (!todoInitializeCheck) {
+    todoInitialize();
   }
-  if (todoListKeys.length > 1) {
-    todoEraseDoneItems(todoLastPurge);
+
+  const todoItemsParsed = todoRetrieve();
+  todoListKeys = Object.keys(todoItemsParsed);
+  console.log(todoListKeys);
+  todoListItems = Object.values(todoItemsParsed);
+  console.log(todoListItems);
+
+  todoEraseCheckValue = todoEraseCheck();
+  console.log(todoEraseCheckValue);
+  if (todoEraseCheckValue) {
+    console.log("todoEraseCheck passed");
+    todoEraseDoneItems();
+  } else {
+    todoListKeysToPrint = todoListKeys;
+    todoListItemsToPrint = todoListItems;
   }
-  todoRetrieve();
+
+  todoPrintTodos();
+  todoSetPurgeTime();
   todoCount();
   todoListenToSubmit();
   todoBoxDisplay();
