@@ -108,7 +108,7 @@ function todoMakeRandomId() {
 function todoConstructItem() {
   var todoTextNode = document.createTextNode(todoRawInput);
 
-  var todoCheckbox = document.createElement("input");
+  const todoCheckbox = document.createElement("input");
   todoCheckbox.setAttribute("type", "checkbox");
   todoCheckbox.setAttribute("name", "todoItemCheckbox");
   todoCheckbox.setAttribute("id", "todoItemCheckbox");
@@ -117,16 +117,16 @@ function todoConstructItem() {
     todoCheckbox.setAttribute("checked", true);
   }
 
-  var todoTextWrap = document.createElement("p");
+  const todoTextWrap = document.createElement("p");
   todoTextWrap.setAttribute("id", "todoItemName");
   todoTextWrap.appendChild(todoTextNode);
   if (todoCurrentKeyLastPlace === "z") {
     todoTextWrap.setAttribute("class", "todoItemDone");
   }
 
-  var todoItemWrap = document.createElement("li");
+  const todoItemWrap = document.createElement("li");
   if (!todoCurrentKey || todoCurrentKey === "undefined") {
-    todoMakeRandomId();
+    todoRandomId = todoMakeRandomId();
     todoItemWrap.setAttribute("id", todoRandomId);
   } else {
     todoItemWrap.setAttribute("id", todoCurrentKey);
@@ -136,8 +136,10 @@ function todoConstructItem() {
   todoItemWrap.appendChild(todoCheckbox);
   todoItemWrap.appendChild(todoTextWrap);
 
-  var todoList = document.getElementById("todoList");
+  const todoList = document.getElementById("todoList");
   todoList.appendChild(todoItemWrap);
+
+  todoStore();
 }
 
 function todoCheckoff() {
