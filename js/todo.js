@@ -102,7 +102,7 @@ function todoListenToSubmit() {
 }
 
 function todoMakeRandomId() {
-  todoRandomId = "t" + Date.now();
+  return "t" + Date.now();
 }
 
 function todoConstructItem() {
