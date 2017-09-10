@@ -6,6 +6,15 @@ function todoBoxDisplay() {
   })
 }
 
+function todoInitialize() {
+  window.localStorage.setItem("initialization", true);
+
+  todoSetPurgeTime();
+
+  let todoItemsJSON = {};
+  window.localStorage.setItem("todoItemsJSON", JSON.stringify(todoItemsJSON));
+}
+
 function todoSetPurgeTime() {
   var x = new Date();
   var d = x.getDate();
