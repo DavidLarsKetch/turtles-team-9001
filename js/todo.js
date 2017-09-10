@@ -39,16 +39,16 @@ function todoEraseCheck() {
 }
 
 function todoEraseDoneItems() {
-  var todoCurrentTime = Date.now();
-  var todoPurgeDifference = todoCurrentTime - todoLastPurge;
-  if (todoPurgeDifference > 86400000) {
-//  if(todoPurgeDifference > 30000)
-    for (var i = 0; i < todoListKeys.length; i++) {
-      todoCurrentKey = todoListKeys[i];
-      todoCurrentKeyLastPlace = todoCurrentKey.slice(-1);
-      if (todoCurrentKeyLastPlace === "z") {
-        window.localStorage.removeItem(todoCurrentKey);
-      }
+  todoListKeysToPrint = todoListKeys;
+  todoListItemsToPrint = todoListItems;
+  for (let i = 0; i < todoListKeys.length; i) {
+    console.log("Passing thru erasing items 'for' loop");
+    let todoCurrentKeyLastPlace = todoListKeys[i].slice(-1);
+    if (todoCurrentKeyLastPlace === "z") {
+      todoListKeysToPrint.splice(i, 1);
+      todoListItemsToPrint.splice(i, 1);
+    } else {
+      i++;
     }
   }
     window.localStorage.removeItem("zzlastPurge");
