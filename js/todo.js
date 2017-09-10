@@ -143,27 +143,35 @@ function todoConstructItem() {
 }
 
 function todoCheckoff() {
-  var todoSibling = this.nextElementSibling;
+  let todoSibling = this.nextElementSibling;
   todoSibling.classList.toggle("todoItemDone");
 
-  var todoCurrentId = this.parentElement.getAttribute("id");
-  var todoCurrentItem = todoSibling.innerHTML;
+  let todoCurrentId = this.parentElement.getAttribute("id");
+  let todoCurrentItem = todoSibling.innerHTML;
 
-  var todoCurrentKeyLastPlace = todoCurrentId.slice(-1);
-  var todoNewId;
+  let todoCurrentKeyLastPlace = todoCurrentId.slice(-1);
+  let todoNewId;
+  let idx = todoListKeysToStore.indexOf(todoCurrentId);
 
   if (todoCurrentKeyLastPlace === "z") {
+    console.log(todoListKeysToStore);
+    console.log(todoListKeysToPrint);
     todoNewId = todoCurrentId.split('');
     todoNewId.pop();
     todoNewId = todoNewId.join('');
+    todoListKeysToStore.splice(idx, 1, todoNewId);
+    todoListKeysToPrint.splice(idx, 1, todoNewId);
+    this.parentElement.setAttribute("id", todoNewId);
   } else {
     todoNewId = todoCurrentId + "z";
+    todoListKeysToStore.splice(idx, 1, todoNewId);
+    todoListKeysToPrint.splice(idx, 1, todoNewId);
+    this.parentElement.setAttribute("id", todoNewId);
   }
 
-  window.localStorage.removeItem(todoCurrentId);
-  window.localStorage.setItem(todoNewId, todoCurrentItem);
-  this.parentElement.setAttribute("id", todoNewId);
-
+  console.log(todoListKeysToPrint);
+  console.log(todoListKeysToStore);
+  todoStore();
   todoCount();
 }
 
