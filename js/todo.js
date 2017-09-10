@@ -86,12 +86,14 @@ function todoCount() {
 }
 
 function todoListenToSubmit() {
-  var todoForm = document.getElementById("todoInputForm");
+  let todoForm = document.getElementById("todoInputForm");
   todoForm.addEventListener("submit", function(event) {
     todoRawInput = document.getElementById("todoInputField").value;
     if (todoRawInput.search(/\S/) !== -1) {
       todoConstructItem(todoRawInput);
-      window.localStorage.setItem(todoRandomId, todoRawInput);
+      todoListKeysToStore.push(todoRandomId);
+      todoListItemsToStore.push(todoRawInput);
+      todoStore();
       todoCount();
     }
     todoForm.reset();
