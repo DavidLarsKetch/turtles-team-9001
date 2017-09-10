@@ -65,6 +65,13 @@ function todoRetrieve() {
     todoRawInput = localStorage.getItem(todoCurrentKey);
 
     todoConstructItem(todoRawInput, todoCurrentKey, todoCurrentKeyLastPlace);
+function todoPrintTodos() {
+  for (let i = 0; i < todoListKeys.length; i++){
+    todoRawInput = todoListItemsToPrint[i];
+    todoCurrentKey = todoListKeysToPrint[i];
+    todoCurrentKeyLastPlace = todoListKeys[i].slice(-1);
+
+    todoConstructItem();
   }
 }
 
