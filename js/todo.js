@@ -1,4 +1,4 @@
-var todoLastPurge, todoListKeys, todoRawInput, todoRandomId, todoCurrentKey, todoCurrentKeyLastPlace;
+let todoListKeys, todoRawInput, todoCurrentKey, todoListKeysToPrint, todoListItemsToPrint, todoCurrentKeyLastPlace, todoRandomId;
 
 function todoBoxDisplay() {
   document.getElementById("todoButton").addEventListener("click", function() {
@@ -6,62 +6,78 @@ function todoBoxDisplay() {
   })
 }
 
-function todoSetPurgeTime() {
-  var x = new Date();
-  var d = x.getDate();
-  var m = x.getMonth();
-  var y = x.getFullYear();
-  var z = new Date(y, m, d, 03, 00, 00, 0);
-  todoLastPurge = Date.parse("'" + z + "'");
+function todoInitialize() {
+  window.localStorage.setItem("initialization", true);
+
+  todoSetPurgeTime();
+
+  let todoItemsJSON = {};
+  window.localStorage.setItem("todoItemsJSON", JSON.stringify(todoItemsJSON));
 }
 
-function todoEraseDoneItems() {
-  var todoCurrentTime = Date.now();
-  var todoPurgeDifference = todoCurrentTime - todoLastPurge;
-  if (todoPurgeDifference > 86400000) {
-//  if(todoPurgeDifference > 30000)
-    for (var i = 0; i < todoListKeys.length; i++) {
-      todoCurrentKey = todoListKeys[i];
-      todoCurrentKeyLastPlace = todoCurrentKey.slice(-1);
-      if (todoCurrentKeyLastPlace === "z") {
-        window.localStorage.removeItem(todoCurrentKey);
-      }
-    }
-  }
-    window.localStorage.removeItem("zzlastPurge");
-    todoSetPurgeTime();
-    window.localStorage.setItem("zzLastPurge", todoLastPurge);
+function todoSetPurgeTime() {
+  let x = new Date();
+  let d = x.getDate();
+  let m = x.getMonth();
+  let y = x.getFullYear();
+  let z = new Date(y, m, d, 03, 00, 00, 0);
+
+  let todoLastPurge = Date.parse("'" + z + "'");
+  window.localStorage.setItem("lastPurge", todoLastPurge);
 }
 
 function todoRetrieve() {
-  todoListKeys = Object.keys(localStorage);
-  todoListKeys.sort();
-  for (var i = 0; i < (todoListKeys.length - 1); i++) {
-    todoCurrentKey = todoListKeys[i];
-    todoCurrentKeyLastPlace = todoCurrentKey.slice(-1);
-    todoRawInput = localStorage.getItem(todoCurrentKey);
+  let todoItemsJSON = window.localStorage.getItem("todoItemsJSON");
+  return JSON.parse(todoItemsJSON);
+}
 
-    todoConstructItem(todoRawInput, todoCurrentKey, todoCurrentKeyLastPlace);
+function todoEraseCheck() {
+  let todoCurrentTime = Date.now();
+  let todoLastPurge = window.localStorage.getItem("lastPurge");
+  return todoCurrentTime - todoLastPurge > 86400000;
+}
+
+function todoEraseDoneItems() {
+  todoListKeysToPrint = todoListKeys;
+  todoListItemsToPrint = todoListItems;
+  for (let i = 0; i < todoListKeys.length; i) {
+    let todoCurrentKeyLastPlace = todoListKeys[i].slice(-1);
+    if (todoCurrentKeyLastPlace === "z") {
+      todoListKeysToPrint.splice(i, 1);
+      todoListItemsToPrint.splice(i, 1);
+    } else {
+      i++;
+    }
+  }
+  todoStore();
+}
+
+function todoPrintTodos() {
+  for (let i = 0; i < todoListKeys.length; i++){
+    todoRawInput = todoListItemsToPrint[i];
+    todoCurrentKey = todoListKeysToPrint[i];
+    todoCurrentKeyLastPlace = todoListKeys[i].slice(-1);
+
+    todoConstructItem();
   }
 }
 
-//Function to count number of todo items left, not counting those checked off.
 function todoCount() {
-  todoListKeys = Object.keys(localStorage);
-
-  var todoNumberOfItems = todoListKeys.filter(function(key){
+  let todoNumberOfItems = todoListKeysToStore.filter(function(key){
     return key.length === 14;
   })
   document.getElementById("todoCounter").innerHTML = todoNumberOfItems.length;
 }
 
 function todoListenToSubmit() {
-  var todoForm = document.getElementById("todoInputForm");
+  let todoForm = document.getElementById("todoInputForm");
   todoForm.addEventListener("submit", function(event) {
     todoRawInput = document.getElementById("todoInputField").value;
     if (todoRawInput.search(/\S/) !== -1) {
       todoConstructItem(todoRawInput);
-      window.localStorage.setItem(todoRandomId, todoRawInput);
+      todoListKeysToStore.push(todoRandomId);
+      todoListItemsToStore.push(todoRawInput);
+      todoStore();
       todoCount();
     }
     todoForm.reset();
@@ -70,13 +86,13 @@ function todoListenToSubmit() {
 }
 
 function todoMakeRandomId() {
-  todoRandomId = "t" + Date.now();
+  return "t" + Date.now();
 }
 
 function todoConstructItem() {
   var todoTextNode = document.createTextNode(todoRawInput);
 
-  var todoCheckbox = document.createElement("input");
+  const todoCheckbox = document.createElement("input");
   todoCheckbox.setAttribute("type", "checkbox");
   todoCheckbox.setAttribute("name", "todoItemCheckbox");
   todoCheckbox.setAttribute("id", "todoItemCheckbox");
@@ -85,16 +101,16 @@ function todoConstructItem() {
     todoCheckbox.setAttribute("checked", true);
   }
 
-  var todoTextWrap = document.createElement("p");
+  const todoTextWrap = document.createElement("p");
   todoTextWrap.setAttribute("id", "todoItemName");
   todoTextWrap.appendChild(todoTextNode);
   if (todoCurrentKeyLastPlace === "z") {
     todoTextWrap.setAttribute("class", "todoItemDone");
   }
 
-  var todoItemWrap = document.createElement("li");
+  const todoItemWrap = document.createElement("li");
   if (!todoCurrentKey || todoCurrentKey === "undefined") {
-    todoMakeRandomId();
+    todoRandomId = todoMakeRandomId();
     todoItemWrap.setAttribute("id", todoRandomId);
   } else {
     todoItemWrap.setAttribute("id", todoCurrentKey);
@@ -104,48 +120,77 @@ function todoConstructItem() {
   todoItemWrap.appendChild(todoCheckbox);
   todoItemWrap.appendChild(todoTextWrap);
 
-  var todoList = document.getElementById("todoList");
+  const todoList = document.getElementById("todoList");
   todoList.appendChild(todoItemWrap);
+
+  todoStore();
 }
 
 function todoCheckoff() {
-  var todoSibling = this.nextElementSibling;
+  let todoSibling = this.nextElementSibling;
   todoSibling.classList.toggle("todoItemDone");
 
-  var todoCurrentId = this.parentElement.getAttribute("id");
-  var todoCurrentItem = todoSibling.innerHTML;
+  let todoCurrentId = this.parentElement.getAttribute("id");
+  let todoCurrentItem = todoSibling.innerHTML;
 
-  var todoCurrentKeyLastPlace = todoCurrentId.slice(-1);
-  var todoNewId;
+  let todoCurrentKeyLastPlace = todoCurrentId.slice(-1);
+  let todoNewId;
+  let idx = todoListKeysToStore.indexOf(todoCurrentId);
 
   if (todoCurrentKeyLastPlace === "z") {
     todoNewId = todoCurrentId.split('');
     todoNewId.pop();
     todoNewId = todoNewId.join('');
+    todoListKeysToStore.splice(idx, 1, todoNewId);
+    todoListKeysToPrint.splice(idx, 1, todoNewId);
+    this.parentElement.setAttribute("id", todoNewId);
   } else {
     todoNewId = todoCurrentId + "z";
+    todoListKeysToStore.splice(idx, 1, todoNewId);
+    todoListKeysToPrint.splice(idx, 1, todoNewId);
+    this.parentElement.setAttribute("id", todoNewId);
   }
 
-  window.localStorage.removeItem(todoCurrentId);
-  window.localStorage.setItem(todoNewId, todoCurrentItem);
-  this.parentElement.setAttribute("id", todoNewId);
-
+  todoStore();
   todoCount();
 }
 
-window.onload = function(){
-  todoLastPurge = window.localStorage.getItem("zzLastPurge");
-  todoListKeys = Object.keys(localStorage);
+function todoStore(){
+  todoListKeysToStore = todoListKeysToPrint;
+  todoListItemsToStore = todoListItemsToPrint;
+  let todoItemsJSON = {};
+  for (let i = 0; i < todoListKeysToPrint.length; i++) {
+    todoItemsJSON[todoListKeysToStore[i]] = todoListItemsToStore[i];
+  }
+  localStorage.setItem("todoItemsJSON", JSON.stringify(todoItemsJSON));
+}
 
-  if (!todoLastPurge) {
-    todoSetPurgeTime();
-    window.localStorage.setItem("zzlastPurge", todoLastPurge);
+window.onload = function(){
+  const todoInitializeCheck = window.localStorage.getItem("initialization");
+
+  if (!todoInitializeCheck) {
+    todoInitialize();
   }
-  if (todoListKeys.length > 1) {
-    todoEraseDoneItems(todoLastPurge);
+
+  const todoItemsParsed = todoRetrieve();
+  todoListKeys = Object.keys(todoItemsParsed);
+  todoListItems = Object.values(todoItemsParsed);
+
+  todoEraseCheckValue = todoEraseCheck();
+  if (todoEraseCheckValue) {
+    todoEraseDoneItems();
+  } else {
+    todoListKeysToPrint = todoListKeys;
+    todoListItemsToPrint = todoListItems;
   }
-  todoRetrieve();
+
+  todoPrintTodos();
+  todoSetPurgeTime();
   todoCount();
   todoListenToSubmit();
   todoBoxDisplay();
+  console.log(todoListItemsToStore);
+  console.log(todoListKeysToStore);
+  console.log(todoListItemsToPrint);
+  console.log(todoListKeysToPrint);
 }
