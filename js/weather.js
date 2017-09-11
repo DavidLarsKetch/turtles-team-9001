@@ -1,12 +1,13 @@
 // Variables
 var lat, lon, lastKnownCityId;
-var cookieJar = chrome.storage.local;
+var cookieJar = localStorage;
 
 
 function geoFallback() {
-  cookieJar.get('lastKnownCityId', (data) => {
-    catsAndDogs(data.lastKnownCityId);
-  });
+  var theCookie = cookieJar.getItem('lastKnownCityId');
+  (theCookie) => {
+    catsAndDogs(theCookie.lastKnownCityId);
+  };
 };
 
 // Code to be executed immediately
@@ -49,7 +50,7 @@ function catsAndDogs(city) {
       console.log('Weather data retreived!');
       console.log(response);
       lastKnownCityId = response.data.sys.id;
-      cookieJar.set({'lastKnownCityId': lastKnownCityId});
+      cookieJar.setItem('lastKnownCityId', lastKnownCityId);
       document.getElementById('tempC').innerHTML = Math.round(response.data.main.temp - 273.15) + "&deg;C";
       document.getElementById('tempCity').innerHTML = response.data.name;
       var iconId = response.data.weather[0].icon;
