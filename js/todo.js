@@ -1,4 +1,4 @@
-let todoListKeys, todoRawInput, todoCurrentKey, todoListKeysToPrint, todoListItemsToPrint, todoCurrentKeyLastPlace, todoRandomId;
+let todoListKeys, todoRawInput, todoCurrentKey, todoListKeysToStore, todoListKeysToPrint, todoListItemsToPrint, todoCurrentKeyLastPlace, todoRandomId;
 
 function todoBoxDisplay() {
   document.getElementById("todoButton").addEventListener("click", function() {
@@ -63,10 +63,15 @@ function todoPrintTodos() {
 }
 
 function todoCount() {
-  let todoNumberOfItems = todoListKeysToStore.filter(function(key){
-    return key.length === 14;
-  })
-  document.getElementById("todoCounter").innerHTML = todoNumberOfItems.length;
+  console.log(todoListKeysToStore);
+  if (todoListKeysToStore === undefined) {
+    document.getElementById("todoCounter").innerHTML = 0;
+  } else {
+    let todoNumberOfItems = todoListKeysToStore.filter(function(key){
+      return key.length === 14;
+    })
+    document.getElementById("todoCounter").innerHTML = todoNumberOfItems.length;
+  }
 }
 
 function todoListenToSubmit() {
@@ -189,8 +194,4 @@ window.onload = function(){
   todoCount();
   todoListenToSubmit();
   todoBoxDisplay();
-  console.log(todoListItemsToStore);
-  console.log(todoListKeysToStore);
-  console.log(todoListItemsToPrint);
-  console.log(todoListKeysToPrint);
 }
