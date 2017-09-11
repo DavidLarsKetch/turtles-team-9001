@@ -35,7 +35,6 @@ function todoEraseCheck() {
   let todoCurrentTime = Date.now();
   let todoLastPurge = window.localStorage.getItem("lastPurge");
   return todoCurrentTime - todoLastPurge > 86400000;
-  //return todoCurrentTime - todoLastPurge > 30000;
 }
 
 function todoEraseDoneItems() {
