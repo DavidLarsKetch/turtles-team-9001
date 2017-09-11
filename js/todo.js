@@ -42,7 +42,6 @@ function todoEraseDoneItems() {
   todoListKeysToPrint = todoListKeys;
   todoListItemsToPrint = todoListItems;
   for (let i = 0; i < todoListKeys.length; i) {
-    console.log("Passing thru erasing items 'for' loop");
     let todoCurrentKeyLastPlace = todoListKeys[i].slice(-1);
     if (todoCurrentKeyLastPlace === "z") {
       todoListKeysToPrint.splice(i, 1);
@@ -140,8 +139,6 @@ function todoCheckoff() {
   let idx = todoListKeysToStore.indexOf(todoCurrentId);
 
   if (todoCurrentKeyLastPlace === "z") {
-    console.log(todoListKeysToStore);
-    console.log(todoListKeysToPrint);
     todoNewId = todoCurrentId.split('');
     todoNewId.pop();
     todoNewId = todoNewId.join('');
@@ -155,23 +152,17 @@ function todoCheckoff() {
     this.parentElement.setAttribute("id", todoNewId);
   }
 
-  console.log(todoListKeysToPrint);
-  console.log(todoListKeysToStore);
   todoStore();
   todoCount();
 }
 
 function todoStore(){
-  console.log("todoStore function is running.");
   todoListKeysToStore = todoListKeysToPrint;
-  console.log(todoListKeysToStore);
   todoListItemsToStore = todoListItemsToPrint;
-  console.log(todoListItemsToStore);
   let todoItemsJSON = {};
   for (let i = 0; i < todoListKeysToPrint.length; i++) {
     todoItemsJSON[todoListKeysToStore[i]] = todoListItemsToStore[i];
   }
-  console.log(todoItemsJSON);
   localStorage.setItem("todoItemsJSON", JSON.stringify(todoItemsJSON));
 }
 
@@ -184,14 +175,10 @@ window.onload = function(){
 
   const todoItemsParsed = todoRetrieve();
   todoListKeys = Object.keys(todoItemsParsed);
-  console.log(todoListKeys);
   todoListItems = Object.values(todoItemsParsed);
-  console.log(todoListItems);
 
   todoEraseCheckValue = todoEraseCheck();
-  console.log(todoEraseCheckValue);
   if (todoEraseCheckValue) {
-    console.log("todoEraseCheck passed");
     todoEraseDoneItems();
   } else {
     todoListKeysToPrint = todoListKeys;
@@ -203,4 +190,8 @@ window.onload = function(){
   todoCount();
   todoListenToSubmit();
   todoBoxDisplay();
+  console.log(todoListItemsToStore);
+  console.log(todoListKeysToStore);
+  console.log(todoListItemsToPrint);
+  console.log(todoListKeysToPrint);
 }
